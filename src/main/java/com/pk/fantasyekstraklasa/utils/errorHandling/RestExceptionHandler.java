@@ -1,7 +1,6 @@
-package com.pk.fantasyekstraklasa.controller.errorHandling;
+package com.pk.fantasyekstraklasa.utils.errorHandling;
 
-import com.pk.fantasyekstraklasa.controller.errorHandling.customExceptions.NoContentException;
-import com.pk.fantasyekstraklasa.controller.errorHandling.customExceptions.NotFoundException;
+import com.pk.fantasyekstraklasa.utils.errorHandling.customExceptions.NotFoundException;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -36,8 +35,4 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler {
         return ResponseEntity.notFound().build();
     }
 
-    @ExceptionHandler({NoContentException.class})
-    public ResponseEntity<Object> handleNoContentException() {
-        return ResponseEntity.noContent().build();
-    }
 }

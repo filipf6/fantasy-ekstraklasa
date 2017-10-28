@@ -1,7 +1,6 @@
 package com.pk.fantasyekstraklasa.logic;
 
-import com.pk.fantasyekstraklasa.controller.errorHandling.customExceptions.NoContentException;
-import com.pk.fantasyekstraklasa.controller.errorHandling.customExceptions.NotFoundException;
+import com.pk.fantasyekstraklasa.utils.errorHandling.customExceptions.NotFoundException;
 import com.pk.fantasyekstraklasa.persistence.model.Player;
 import com.pk.fantasyekstraklasa.persistence.model.Team;
 import com.pk.fantasyekstraklasa.persistence.model.Transfer;
@@ -57,8 +56,6 @@ public class TeamsService {
     public Set<Player> getPlayersFromTeam(Long teamId) {
         Team team = teamsRepository.findOne(teamId);
         if (team == null) throw new NotFoundException();
-        Set<Player> players = team.getPlayers();
-        if (players.isEmpty()) throw new NoContentException();
-        return players;
+        return team.getPlayers();
     }
 }

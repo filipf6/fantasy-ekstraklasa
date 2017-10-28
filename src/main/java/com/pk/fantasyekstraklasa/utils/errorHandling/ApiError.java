@@ -1,4 +1,4 @@
-package com.pk.fantasyekstraklasa.controller.errorHandling;
+package com.pk.fantasyekstraklasa.utils.errorHandling;
 
 import org.springframework.http.HttpStatus;
 

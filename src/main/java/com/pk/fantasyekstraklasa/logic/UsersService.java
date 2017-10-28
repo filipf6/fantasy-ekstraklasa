@@ -1,6 +1,6 @@
 package com.pk.fantasyekstraklasa.logic;
 
-import com.pk.fantasyekstraklasa.controller.errorHandling.customExceptions.NotFoundException;
+import com.pk.fantasyekstraklasa.utils.errorHandling.customExceptions.NotFoundException;
 import com.pk.fantasyekstraklasa.persistence.model.Team;
 import com.pk.fantasyekstraklasa.persistence.model.User;
 import com.pk.fantasyekstraklasa.persistence.repository.TeamsRepository;

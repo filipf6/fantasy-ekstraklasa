@@ -1,25 +1,37 @@
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
-import { NbThemeModule, NbSidebarModule, NbLayoutModule, NbSidebarService } from '@nebular/theme';
+import {BrowserModule} from '@angular/platform-browser';
+import {NgModule} from '@angular/core';
+import {
+  NbLayoutModule,
+  NbMenuModule,
+  NbSidebarModule,
+  NbThemeModule
+} from '@nebular/theme';
 
-import { AppComponent } from './app.component';
+import {AppComponent} from './app.component';
 import {HttpModule} from "@angular/http";
-// import {RestService} from "./rest.service";
-// import {TeamsService} from "./teams.service";
-// import {Http, HttpModule} from "@angular/http";
+import {APP_BASE_HREF} from "@angular/common";
+import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+import {AppRoutingModule} from "./app-routing.module";
+import {NgbModule} from "@ng-bootstrap/ng-bootstrap";
+import {CoreModule} from "./@core/core.module";
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
   ],
   imports: [
     BrowserModule,
-    NbThemeModule.forRoot({ name: 'cosmic' }),
-    NbLayoutModule,
-    NbSidebarModule,
+    BrowserAnimationsModule,
     HttpModule,
+    AppRoutingModule,
+
+    NgbModule.forRoot(),
+    CoreModule.forRoot(),
+    NbThemeModule.forRoot({name: 'cosmic'}),
+
   ],
-  providers: [NbSidebarService],
+  providers: [{ provide: APP_BASE_HREF, useValue: '/' },],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+}
