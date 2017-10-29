@@ -1,11 +1,6 @@
 import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
-import {
-  NbLayoutModule,
-  NbMenuModule,
-  NbSidebarModule,
-  NbThemeModule
-} from '@nebular/theme';
+import {NbThemeModule} from '@nebular/theme';
 
 import {AppComponent} from './app.component';
 import {HttpModule} from "@angular/http";
@@ -13,7 +8,6 @@ import {APP_BASE_HREF} from "@angular/common";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {AppRoutingModule} from "./app-routing.module";
 import {NgbModule} from "@ng-bootstrap/ng-bootstrap";
-import {CoreModule} from "./@core/core.module";
 
 @NgModule({
   declarations: [
@@ -26,7 +20,7 @@ import {CoreModule} from "./@core/core.module";
     AppRoutingModule,
 
     NgbModule.forRoot(),
-    CoreModule.forRoot(),
+    //CoreModule.forRoot(),
     NbThemeModule.forRoot({name: 'cosmic'}),
 
   ],
