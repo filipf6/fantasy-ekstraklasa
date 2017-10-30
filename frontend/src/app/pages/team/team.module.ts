@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 
 import { TeamComponent } from './team.component';
 import { routing } from './team.routing';
+import {TeamService} from "./team.service";
 
 @NgModule({
   imports: [

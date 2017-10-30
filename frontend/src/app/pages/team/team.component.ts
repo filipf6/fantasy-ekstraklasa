@@ -1,7 +1,6 @@
 import {Component} from "@angular/core";
-import {PlayerPresentation} from "./playerPresentation";
-import {Http} from "@angular/http";
-import {Observable} from "rxjs/Observable";
+import {PlayerPresentation} from "./player.presentation";
+import {TeamService} from "./team.service";
 
 @Component({
   selector: 'team-component',
@@ -9,20 +8,12 @@ import {Observable} from "rxjs/Observable";
   styleUrls: ['./team.component.css']
 })
 export class TeamComponent {
-  players: PlayerPresentation[]=[];
+  players: PlayerPresentation[] = [];
 
-  constructor(private http: Http) {
-
+  constructor(private teamService: TeamService) {
   }
 
-  get(teamId: number) {
-    this.getPlayers(teamId).subscribe(data=> {
-      this.players = data;
-      console.log(this.players);
-    });
-  }
-
-  getPlayers(teamId: number): Observable<any> {
-    return this.http.get(`api/teams/${teamId}/players`).map(response=>response.json());
+  getPlayers(teamId: number) {
+    return this.teamService.getPlayers(teamId).subscribe(data => this.players = data);
   }
 }

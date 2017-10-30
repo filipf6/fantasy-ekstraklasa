@@ -7,6 +7,8 @@ import {ThemeModule} from "../@theme/theme.module";
 import {NbMenuService, NbSidebarService} from "@nebular/theme";
 import {NbMenuInternalService} from "@nebular/theme/components/menu/menu.service";
 import {UserModule} from "./user/user.module";
+import {TeamService} from "./team/team.service";
+import {RestService} from "../utils/rest.service";
 
 const PAGES_COMPONENTS = [
   PagesComponent,
@@ -22,7 +24,7 @@ const PAGES_COMPONENTS = [
   declarations: [
     ...PAGES_COMPONENTS,
   ],
-  providers: [NbMenuService, NbSidebarService, NbMenuInternalService]
+  providers: [NbMenuService, NbSidebarService, NbMenuInternalService, TeamService, RestService]
 })
 export class PagesModule {
 }
