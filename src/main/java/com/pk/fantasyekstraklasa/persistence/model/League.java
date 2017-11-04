@@ -1,7 +1,6 @@
 package com.pk.fantasyekstraklasa.persistence.model;
 
 import org.hibernate.validator.constraints.NotBlank;
-import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
 import java.util.HashSet;
@@ -9,7 +8,6 @@ import java.util.Set;
 
 @Entity
 @Table(name = "leagues")
-@EntityListeners(AuditingEntityListener.class)
 public class League {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

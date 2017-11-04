@@ -1,9 +1,8 @@
 package com.pk.fantasyekstraklasa.persistence.model;
 
-import com.pk.fantasyekstraklasa.persistence.model.utils.Position;
+import com.pk.fantasyekstraklasa.persistence.model.enums.Position;
 import org.hibernate.validator.constraints.NotBlank;
 import org.hibernate.validator.constraints.Range;
-import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -12,11 +11,10 @@ import java.util.Set;
 
 @Entity
 @Table(name = "players")
-@EntityListeners(AuditingEntityListener.class)
 public class Player {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "PLAYER_ID")
+    //@Column(name = "PLAYER_ID")
     private Long id;
 
     @NotBlank
@@ -43,7 +41,8 @@ public class Player {
     @OneToMany(mappedBy = "player", cascade = CascadeType.ALL)
     private Set<Transfer> transfers = new HashSet<>(0);
 
-    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    // fetch = FetchType.LAZY,
+    @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(name = "player_team", joinColumns = {@JoinColumn(name = "PLAYER_ID")}, inverseJoinColumns = { @JoinColumn(name="TEAM_ID") })//@JoinColumn(name = "players_id", referencedColumnName = "id"), inverseJoinColumns = @JoinColumn(name = "teams_id", referencedColumnName = "id"))
     private Set<Team> teams = new HashSet<>(0);
 

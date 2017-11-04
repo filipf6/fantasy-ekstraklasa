@@ -4,7 +4,7 @@ import com.pk.fantasyekstraklasa.utils.errorHandling.customExceptions.NotFoundEx
 import com.pk.fantasyekstraklasa.persistence.model.Player;
 import com.pk.fantasyekstraklasa.persistence.model.Team;
 import com.pk.fantasyekstraklasa.persistence.model.Transfer;
-import com.pk.fantasyekstraklasa.persistence.model.utils.TransferType;
+import com.pk.fantasyekstraklasa.persistence.model.enums.TransferType;
 import com.pk.fantasyekstraklasa.persistence.repository.PlayersRepository;
 import com.pk.fantasyekstraklasa.persistence.repository.TeamsRepository;
 import com.pk.fantasyekstraklasa.persistence.repository.TransfersRepository;

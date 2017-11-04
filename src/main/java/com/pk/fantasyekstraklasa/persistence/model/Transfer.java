@@ -1,8 +1,7 @@
 package com.pk.fantasyekstraklasa.persistence.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.pk.fantasyekstraklasa.persistence.model.utils.TransferType;
-import org.hibernate.validator.constraints.NotBlank;
+import com.pk.fantasyekstraklasa.persistence.model.enums.TransferType;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
@@ -12,7 +11,7 @@ import java.util.Date;
 @Entity
 @Table(name = "transfers")
 @EntityListeners(AuditingEntityListener.class)
-@JsonIgnoreProperties(value = "createdDate", allowGetters = true)
+@JsonIgnoreProperties(value = "transferDate", allowGetters = true)
 public class Transfer {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

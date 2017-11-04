@@ -21,7 +21,7 @@ public class PlayersController {
     }
 
     @RequestMapping(value = "/addPlayer", method = RequestMethod.POST, consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE,
-            produces = {MediaType.APPLICATION_ATOM_XML_VALUE, MediaType.APPLICATION_JSON_VALUE})
+            produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> addPlayer(Player player) {
         Player savedPlayer = playersService.addPlayer(player);
         return new ResponseEntity<>(savedPlayer, HttpStatus.OK);

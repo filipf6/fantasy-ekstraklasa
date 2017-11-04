@@ -8,6 +8,7 @@ import {APP_BASE_HREF} from "@angular/common";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {AppRoutingModule} from "./app-routing.module";
 import {NgbModule} from "@ng-bootstrap/ng-bootstrap";
+import {CoreModule} from "./@core/core.module";
 
 @NgModule({
   declarations: [
@@ -20,7 +21,7 @@ import {NgbModule} from "@ng-bootstrap/ng-bootstrap";
     AppRoutingModule,
 
     NgbModule.forRoot(),
-    //CoreModule.forRoot(),
+    CoreModule.forRoot(),
     NbThemeModule.forRoot({name: 'cosmic'}),
 
   ],

@@ -7,13 +7,15 @@ import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "users")
 @EntityListeners(AuditingEntityListener.class)
-@JsonIgnoreProperties(value = "createdDate", allowGetters = true)
+@JsonIgnoreProperties(value = "createDate", allowGetters = true)
 public class User implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -29,6 +31,10 @@ public class User implements Serializable {
     @Column(unique = true, nullable = false)
     private String email;
 
+    @Column(unique = true)
+    @NotNull
+    private String username;
+
     @NotBlank
     private String password;
 
@@ -36,6 +42,22 @@ public class User implements Serializable {
     @Temporal(TemporalType.TIMESTAMP)
     @CreatedDate
     private Date createDate;
+
+    @Column(columnDefinition = "TINYINT(1)")
+    @NotNull
+    private boolean enabled;
+
+    @Temporal(TemporalType.TIMESTAMP)
+    //@Column(nullable = false)
+    private Date lastPasswordResetDate;
+
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(
+            name = "USER_AUTHORITY",
+            joinColumns = {@JoinColumn(name = "user_id", referencedColumnName = "id")},
+            inverseJoinColumns = {@JoinColumn(name = "authority_id", referencedColumnName = "id")})
+    private List<Authority> authorities;
+
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "teams_id")
@@ -76,6 +98,15 @@ public class User implements Serializable {
         this.email = email;
     }
 
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
     public String getPassword() {
         return password;
     }
@@ -92,12 +123,36 @@ public class User implements Serializable {
         this.createDate = createDate;
     }
 
+    public List<Authority> getAuthorities() {
+        return authorities;
+    }
+
+    public void setAuthorities(List<Authority> authorities) {
+        this.authorities = authorities;
+    }
+
     public Team getTeam() {
         return team;
     }
 
     public void setTeam(Team team) {
         this.team = team;
+    }
+
+    public boolean isEnabled() {
+        return enabled;
+    }
+
+    public void setEnabled(boolean enabled) {
+        this.enabled = enabled;
+    }
+
+    public Date getLastPasswordResetDate() {
+        return lastPasswordResetDate;
+    }
+
+    public void setLastPasswordResetDate(Date lastPasswordResetDate) {
+        this.lastPasswordResetDate = lastPasswordResetDate;
     }
 
     @Override
