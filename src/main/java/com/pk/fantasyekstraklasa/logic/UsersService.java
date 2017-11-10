@@ -35,11 +35,11 @@ public class UsersService {
         return user;
     }
 
-    public User getUserByUsername(String username) {
-        User user = usersRepository.findByUsername(username);
-        if (user == null) throw new NotFoundException();
-        return user;
-    }
+//    public User getUserByUsername(String username) {
+//        User user = usersRepository.findByUsername(username);
+//        if (user == null) throw new NotFoundException();
+//        return user;
+//    }
 
     public void setUsersTeam(Long userId, Team team) {
         teamsRepository.save(team);

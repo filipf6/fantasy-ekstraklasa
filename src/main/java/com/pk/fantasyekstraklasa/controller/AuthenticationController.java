@@ -6,6 +6,7 @@ import com.pk.fantasyekstraklasa.utils.security.JwtTokenUtil;
 import com.pk.fantasyekstraklasa.utils.security.JwtUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.mobile.device.Device;
@@ -30,7 +31,6 @@ public class AuthenticationController {
 
     @Autowired
     private AuthenticationManager authenticationManager;
-    //private ProviderManager providerManager;
 
     @Autowired
     private JwtTokenUtil jwtTokenUtil;
@@ -38,28 +38,37 @@ public class AuthenticationController {
     @Autowired
     private UserDetailsService userDetailsService;
 
-    @RequestMapping(value = "/auth", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE,
-            produces = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(value = "/auth", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> createAuthenticationToken(@RequestBody JwtAuthenticationRequest authenticationRequest, Device device) throws AuthenticationException {
-        try {
+//        try {
+            System.out.println("USERNAME: "+authenticationRequest.getEmail()+"/nPASSWORD: "+authenticationRequest.getPassword());
+
             final Authentication authentication = authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(
-                        authenticationRequest.getUsername(),
+                        authenticationRequest.getEmail(),
                         authenticationRequest.getPassword()
                 )
             );
             SecurityContextHolder.getContext().setAuthentication(authentication);
-        } catch(Exception e) {
-            e.printStackTrace();
-            System.out.println("ERR");
-        }
+//        } catch(Exception e) {
+//            e.printStackTrace();
+//            System.out.println("ERR");
+//        }
 
 
         // Reload password post-security so we can generate token
-        final UserDetails userDetails = userDetailsService.loadUserByUsername( authenticationRequest.getUsername());
+        final UserDetails userDetails = userDetailsService.loadUserByUsername( authenticationRequest.getEmail());
         final String token = jwtTokenUtil.generateToken(userDetails, device);
-
+        System.out.println("token: "+token);
         // Return the token
+//        try{
+//            return new ResponseEntity<Object>(token, HttpStatus.OK);
+//        } catch(Exception e) {
+//            e.printStackTrace();
+//            System.err.println("ERR");
+//            return ResponseEntity.badRequest().body(null);
+//        }
+
         return ResponseEntity.ok(new JwtAuthenticationResponse(token));
     }
 

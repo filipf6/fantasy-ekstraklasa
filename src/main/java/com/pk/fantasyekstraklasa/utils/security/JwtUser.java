@@ -12,27 +12,36 @@ public class JwtUser implements UserDetails {
     private final Long id;
     private final String name;
     private final String surname;
-    private final String email;
+    //private final String email;
     private final String username;
     private final String password;
     private final Date createDate;
     private final Collection<? extends GrantedAuthority> authorities;
     private final boolean enabled;
     private final Date lastPasswordResetDate;
-    //private final Team team;
+    private final Team team;
 
-    public JwtUser(Long id, String name, String surname, String email, String username, String password, Date createDate, Collection<? extends GrantedAuthority> authorities, boolean enabled, Date lastPasswordResetDate){//, Team team) {
+    public JwtUser(Long id,
+                   String name,
+                   String surname,
+                   String username,
+                   String password,
+                   Date createDate,
+                   Collection<? extends GrantedAuthority> authorities,
+                   boolean enabled,
+                   Date lastPasswordResetDate,
+                   Team team) { //, String email
         this.id = id;
         this.name = name;
         this.surname = surname;
-        this.email = email;
+        //this.email = email;
         this.username = username;
         this.password = password;
         this.createDate = createDate;
         this.authorities = authorities;
         this.enabled = enabled;
         this.lastPasswordResetDate = lastPasswordResetDate;
-        //this.team = team;
+        this.team = team;
     }
 
     @Override
@@ -50,6 +59,7 @@ public class JwtUser implements UserDetails {
     public String getUsername() {
         return this.username;
     }
+
     @JsonIgnore
     @Override
     public boolean isAccountNonExpired() {
@@ -68,7 +78,7 @@ public class JwtUser implements UserDetails {
 
     @Override
     public boolean isEnabled() {
-        return true;
+        return enabled;
     }
     @JsonIgnore
     public Long getId() {
@@ -83,9 +93,9 @@ public class JwtUser implements UserDetails {
         return surname;
     }
 
-    public String getEmail() {
-        return email;
-    }
+//    public String getEmail() {
+//        return email;
+//    }
 
     public Date getCreateDate() {
         return createDate;
@@ -96,7 +106,7 @@ public class JwtUser implements UserDetails {
         return lastPasswordResetDate;
     }
 
-//    public Team getTeam() {
-//        return team;
-//    }
+    public Team getTeam() {
+        return team;
+    }
 }

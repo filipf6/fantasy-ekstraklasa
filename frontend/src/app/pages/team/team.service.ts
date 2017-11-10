@@ -6,7 +6,8 @@ import {RestService} from "../../utils/rest.service";
 @Injectable()
 export class TeamService {
 
-  constructor(private restService: RestService) {}
+  constructor(private restService: RestService) {
+  }
 
   getPlayers(teamId: number): Observable<PlayerPresentation[]> {
     return this.restService.get(`teams/${teamId}/players`);

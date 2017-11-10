@@ -38,11 +38,11 @@ public class UsersController {
 //        return new ResponseEntity<Object>(user, HttpStatus.OK);
 //    }
 
-    @RequestMapping(method = RequestMethod.GET)
-    public ResponseEntity<?> getUserByUsername(@RequestParam String username) {
-        User user = usersService.getUserByUsername(username);
-        return new ResponseEntity<Object>(user, HttpStatus.OK);
-    }
+//    @RequestMapping(method = RequestMethod.GET)
+//    public ResponseEntity<?> getUserByUsername(@RequestParam String username) {
+//        User user = usersService.getUserByUsername(username);
+//        return new ResponseEntity<Object>(user, HttpStatus.OK);
+//    }
 
     @RequestMapping(value = "/{userId}/setTeam", method = RequestMethod.POST, consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)

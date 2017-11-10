@@ -1,14 +1,16 @@
-import { NgModule } from '@angular/core';
+import {NgModule} from '@angular/core';
 
-import { PagesComponent } from './pages.component';
-import { TeamModule } from './team/team.module';
-import { PagesRoutingModule } from './pages.routing';
+import {PagesComponent} from './pages.component';
+import {TeamModule} from './team/team.module';
+import {PagesRoutingModule} from './pages.routing';
 import {ThemeModule} from "../@theme/theme.module";
 import {NbMenuService, NbSidebarService} from "@nebular/theme";
 import {NbMenuInternalService} from "@nebular/theme/components/menu/menu.service";
 import {UserModule} from "./user/user.module";
 import {TeamService} from "./team/team.service";
 import {RestService} from "../utils/rest.service";
+import {NbAuthService} from "@nebular/auth";
+import {HomeModule} from "./home/home.module";
 
 const PAGES_COMPONENTS = [
   PagesComponent,
@@ -17,14 +19,15 @@ const PAGES_COMPONENTS = [
 @NgModule({
   imports: [
     PagesRoutingModule,
+    HomeModule,
     TeamModule,
     UserModule,
-    ThemeModule
+    ThemeModule,
   ],
   declarations: [
     ...PAGES_COMPONENTS,
   ],
-  providers: [NbMenuService, NbSidebarService, NbMenuInternalService, TeamService, RestService]
+  providers: [NbMenuService, NbSidebarService, NbMenuInternalService, TeamService, RestService, NbAuthService]
 })
 export class PagesModule {
 }

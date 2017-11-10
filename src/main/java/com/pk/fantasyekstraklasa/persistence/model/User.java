@@ -31,9 +31,9 @@ public class User implements Serializable {
     @Column(unique = true, nullable = false)
     private String email;
 
-    @Column(unique = true)
-    @NotNull
-    private String username;
+//    @Column(unique = true)
+//    @NotNull
+//    private String username;
 
     @NotBlank
     private String password;
@@ -99,13 +99,13 @@ public class User implements Serializable {
     }
 
 
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
+//    public String getUsername() {
+//        return username;
+//    }
+//
+//    public void setUsername(String username) {
+//        this.username = username;
+//    }
 
     public String getPassword() {
         return password;
