@@ -11,7 +11,8 @@ export class LoginComponent implements OnInit {
 
   submitted: boolean = false;
   user: any = {};
-  errors: string[] = [];
+  // errors: string[] = [];
+  error: string;
 
   constructor(private router: Router, private authenticationService: AuthenticationService) {
   }
@@ -22,12 +23,13 @@ export class LoginComponent implements OnInit {
       .subscribe(result => {
         if(result===true) this.router.navigate(['pages']);
         else {
-          this.errors.push('Username or password is incorrect');
+          //this.errors.push('Username or password is incorrect');
+          this.error = 'Username or password is incorrect';
           this.submitted = false;
         }
       }, error => {
         this.submitted = false;
-        this.errors.push(error);
+        this.error = 'Username or password is incorrect';
       })
   }
 

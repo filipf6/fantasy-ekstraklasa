@@ -22,20 +22,22 @@ public class Serializer {
             jsonGenerator.writeNumberField("price", player.getPrice());
             jsonGenerator.writeBooleanField("injury", player.isInjury());
         }
+
     }
-//    public static class UserSerializer extends JsonObjectSerializer<User> {
-//        @Override
-//        protected void serializeObject(User user, JsonGenerator jsonGenerator, SerializerProvider serializerProvider) throws IOException {
-//            jsonGenerator.writeNumberField("id",user.getId());
-//            jsonGenerator.writeStringField("name", user.getName());
-//            jsonGenerator.writeStringField("surname", user.getSurname());
-//            jsonGenerator.writeStringField("email", user.getEmail());
-//            jsonGenerator.writeStringField("username", user.getUsername());
-//            jsonGenerator.writeStringField("password",user.getPassword());
-//            jsonGenerator.writeObjectField("createDate", user.getCreateDate());
-//            jsonGenerator.writeObjectField("lastPasswordResetDate", user.getLastPasswordResetDate());
-//        }
-//    }
+    public static class UserSerializer extends JsonObjectSerializer<User> {
+        @Override
+        protected void serializeObject(User user, JsonGenerator jsonGenerator, SerializerProvider serializerProvider) throws IOException {
+            jsonGenerator.writeNumberField("id",user.getId());
+            jsonGenerator.writeStringField("name", user.getName());
+            jsonGenerator.writeStringField("surname", user.getSurname());
+            jsonGenerator.writeStringField("email", user.getEmail());
+            jsonGenerator.writeStringField("password",user.getPassword());
+            jsonGenerator.writeObjectField("createDate", user.getCreateDate());
+            jsonGenerator.writeBooleanField("enabled", user.isEnabled());
+            jsonGenerator.writeObjectField("lastPasswordResetDate", user.getLastPasswordResetDate());
+            jsonGenerator.writeObjectField("authorities",user.getAuthorities());
+        }
+    }
     public static class LeagueSerializer extends JsonObjectSerializer<League> {
         @Override
         protected void serializeObject(League league, JsonGenerator jsonGenerator, SerializerProvider serializerProvider) throws IOException {

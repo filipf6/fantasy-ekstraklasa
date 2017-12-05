@@ -31,9 +31,7 @@ public class User implements Serializable {
     @Column(unique = true, nullable = false)
     private String email;
 
-//    @Column(unique = true)
-//    @NotNull
-//    private String username;
+    //private String username;
 
     @NotBlank
     private String password;
@@ -153,6 +151,20 @@ public class User implements Serializable {
 
     public void setLastPasswordResetDate(Date lastPasswordResetDate) {
         this.lastPasswordResetDate = lastPasswordResetDate;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", surname='" + surname + '\'' +
+                ", email='" + email + '\'' +
+                ", password='" + password + '\'' +
+                ", createDate=" + createDate +
+                ", enabled=" + enabled +
+                ", lastPasswordResetDate=" + lastPasswordResetDate +
+                '}';
     }
 
     @Override

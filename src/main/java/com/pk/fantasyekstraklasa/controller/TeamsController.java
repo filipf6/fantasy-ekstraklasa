@@ -32,7 +32,6 @@ public class TeamsController {
     @RequestMapping(value = "{teamId}/players", method = RequestMethod.GET)
     public ResponseEntity<?> getPlayers(@PathVariable Long teamId) {
         List<Player> players = new ArrayList<>(teamsService.getPlayersFromTeam(teamId)); //teamsService.getPlayersFromTeam(teamId)
-
         return players.isEmpty() ?
                 new ResponseEntity<>(HttpStatus.NOT_FOUND) :
                 new ResponseEntity<Object>(players, HttpStatus.OK);

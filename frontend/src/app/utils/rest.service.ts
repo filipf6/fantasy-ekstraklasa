@@ -21,4 +21,8 @@ export class RestService {
     return this.http.get('api/'+url, {headers: this.headers}).map(response=>response.json());
   }
 
+  post(url: string, params: any, headers: Headers): Observable<any> {
+    return this.http.post('api/'+url,params, headers).map(response=>response.json());
+  }
+
 }

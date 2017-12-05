@@ -1,6 +1,8 @@
 package com.pk.fantasyekstraklasa.controller;
 
+import com.pk.fantasyekstraklasa.logic.UsersService;
 import com.pk.fantasyekstraklasa.logic.jwtService.JwtAuthenticationResponse;
+import com.pk.fantasyekstraklasa.persistence.model.User;
 import com.pk.fantasyekstraklasa.utils.security.JwtAuthenticationRequest;
 import com.pk.fantasyekstraklasa.utils.security.JwtTokenUtil;
 import com.pk.fantasyekstraklasa.utils.security.JwtUser;
@@ -25,6 +27,7 @@ import org.springframework.web.bind.annotation.RestController;
 import javax.servlet.http.HttpServletRequest;
 
 @RestController
+@RequestMapping("/auth")
 public class AuthenticationController {
     @Value("${jwt.header}")
     private String tokenHeader;
@@ -38,7 +41,10 @@ public class AuthenticationController {
     @Autowired
     private UserDetailsService userDetailsService;
 
-    @RequestMapping(value = "/auth", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+    @Autowired
+    private UsersService usersService;
+
+    @RequestMapping(value = "/signIn", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> createAuthenticationToken(@RequestBody JwtAuthenticationRequest authenticationRequest, Device device) throws AuthenticationException {
 //        try {
             System.out.println("USERNAME: "+authenticationRequest.getEmail()+"/nPASSWORD: "+authenticationRequest.getPassword());
@@ -85,5 +91,13 @@ public class AuthenticationController {
         } else {
             return ResponseEntity.badRequest().body(null);
         }
+    }
+
+    @RequestMapping(value="/signUp", method = RequestMethod.POST,
+            produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<?> signUp(@RequestBody User user) {
+        System.out.println("jestem w controlerze!!! "+user);
+        usersService.saveUser(user);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 }

@@ -2,7 +2,6 @@ import {Component, Input} from '@angular/core';
 
 import {NbMenuService, NbSidebarService} from '@nebular/theme';
 import {AnalyticsService} from '../../../@core/utils/analytics.service';
-//import {NbAuthJWTToken, NbAuthService} from '@nebular/auth';
 
 @Component({
   selector: 'ngx-header',
@@ -16,7 +15,14 @@ export class HeaderComponent {
 
   loggedUser: any;
 
-  userMenu = [{title: 'Profile'}, {title: 'Log out'}];
+  userMenu = [
+    {
+      title: 'Profile'
+    },
+    {
+      title: 'Log out',
+      link: '../auth/login',
+    }];
 
   constructor(private sidebarService: NbSidebarService,
               private menuService: NbMenuService,

@@ -22,8 +22,9 @@ public class UsersController {
     @RequestMapping(value = "/saveUser", method = RequestMethod.POST, consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> saveUser(User userToSave) {
-        User savedUser = usersService.saveUser(userToSave);
-        return new ResponseEntity<>(savedUser, HttpStatus.OK);
+        //User savedUser =
+                usersService.saveUser(userToSave);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 
     @RequestMapping(value = "/{userId}", method = RequestMethod.GET)

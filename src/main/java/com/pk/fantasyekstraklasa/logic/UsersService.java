@@ -5,22 +5,27 @@ import com.pk.fantasyekstraklasa.persistence.model.User;
 import com.pk.fantasyekstraklasa.persistence.repository.TeamsRepository;
 import com.pk.fantasyekstraklasa.persistence.repository.UsersRepository;
 import com.pk.fantasyekstraklasa.utils.errorHandling.customExceptions.NotFoundException;
+import org.hibernate.exception.ConstraintViolationException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Service
 public class UsersService {
     private UsersRepository usersRepository;
     private TeamsRepository teamsRepository;
+    private BCryptPasswordEncoder bCryptPasswordEncoder;
 
     @Autowired
-    public UsersService(UsersRepository usersRepository, TeamsRepository teamsRepository) {
+    public UsersService(UsersRepository usersRepository, TeamsRepository teamsRepository, BCryptPasswordEncoder bCryptPasswordEncoder) {
         this.usersRepository = usersRepository;
         this.teamsRepository = teamsRepository;
+        this.bCryptPasswordEncoder = bCryptPasswordEncoder;
     }
 
-    public User saveUser(User user) {
-        return usersRepository.save(user);
+    public void saveUser(User user) {
+        user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
+        usersRepository.save(user);
     }
 
     public User getUserById(Long id) {
