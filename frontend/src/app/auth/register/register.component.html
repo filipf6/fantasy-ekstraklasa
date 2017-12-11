@@ -1,7 +1,7 @@
 <!--<nb-auth-block>-->
   <h2 class="title">Sign Up</h2>
   <form (ngSubmit)="register()" #form="ngForm">
-    <div *ngIf="error"
+    <div *ngIf="error && !submitted"
          class="alert alert-danger" role="alert">
       <div><strong>Oh snap!</strong></div>
       <div>{{ error }}</div>
