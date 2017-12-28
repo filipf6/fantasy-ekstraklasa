@@ -1,4 +1,4 @@
-export class PlayerPresentation {
+export class Player {
   id: number;
   name: string;
   surname: string;
@@ -6,3 +6,4 @@ export class PlayerPresentation {
   price: number;
   injury: boolean;
 }
+

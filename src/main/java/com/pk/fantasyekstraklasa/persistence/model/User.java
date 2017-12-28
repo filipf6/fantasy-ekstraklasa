@@ -49,6 +49,9 @@ public class User implements Serializable {
     //@Column(nullable = false)
     private Date lastPasswordResetDate;
 
+    @NotNull
+    private int budget;
+
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
             name = "USER_AUTHORITY",
@@ -96,15 +99,6 @@ public class User implements Serializable {
         this.email = email;
     }
 
-
-//    public String getUsername() {
-//        return username;
-//    }
-//
-//    public void setUsername(String username) {
-//        this.username = username;
-//    }
-
     public String getPassword() {
         return password;
     }
@@ -151,6 +145,14 @@ public class User implements Serializable {
 
     public void setLastPasswordResetDate(Date lastPasswordResetDate) {
         this.lastPasswordResetDate = lastPasswordResetDate;
+    }
+
+    public int getBudget() {
+        return budget;
+    }
+
+    public void setBudget(int budget) {
+        this.budget = budget;
     }
 
     @Override

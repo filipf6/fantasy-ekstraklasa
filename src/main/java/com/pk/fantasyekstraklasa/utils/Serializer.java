@@ -4,6 +4,7 @@ import com.fasterxml.jackson.core.JsonGenerator;
 import com.fasterxml.jackson.databind.SerializerProvider;
 import com.pk.fantasyekstraklasa.persistence.model.League;
 import com.pk.fantasyekstraklasa.persistence.model.Player;
+import com.pk.fantasyekstraklasa.persistence.model.Team;
 import com.pk.fantasyekstraklasa.persistence.model.User;
 import org.springframework.boot.jackson.JsonComponent;
 import org.springframework.boot.jackson.JsonObjectSerializer;
@@ -35,7 +36,7 @@ public class Serializer {
             jsonGenerator.writeObjectField("createDate", user.getCreateDate());
             jsonGenerator.writeBooleanField("enabled", user.isEnabled());
             jsonGenerator.writeObjectField("lastPasswordResetDate", user.getLastPasswordResetDate());
-            jsonGenerator.writeObjectField("authorities",user.getAuthorities());
+            jsonGenerator.writeNumberField("budget",user.getBudget());
         }
     }
     public static class LeagueSerializer extends JsonObjectSerializer<League> {
@@ -43,6 +44,15 @@ public class Serializer {
         protected void serializeObject(League league, JsonGenerator jsonGenerator, SerializerProvider serializerProvider) throws IOException {
             jsonGenerator.writeNumberField("id",league.getId());
             jsonGenerator.writeStringField("name", league.getName());
+        }
+    }
+
+    public static class TeamSerializer extends JsonObjectSerializer<Team> {
+        @Override
+        protected void serializeObject(Team team, JsonGenerator jsonGenerator, SerializerProvider serializerProvider) throws IOException {
+            jsonGenerator.writeNumberField("id",team.getId());
+            jsonGenerator.writeStringField("name", team.getName());
+            jsonGenerator.writeObjectField("user", team.getUser());
         }
     }
 }

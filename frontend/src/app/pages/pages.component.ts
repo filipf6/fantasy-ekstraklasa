@@ -2,7 +2,7 @@ import {Component} from '@angular/core';
 
 import {MENU_ITEMS} from './pages.menu';
 import {NbMenuService, NbSidebarService} from "@nebular/theme";
-import {NbAuthJWTToken, NbAuthService, NbTokenService} from '@nebular/auth';
+import {NbAuthService, NbTokenService} from '@nebular/auth';
 
 
 @Component({
@@ -25,7 +25,7 @@ import {NbAuthJWTToken, NbAuthService, NbTokenService} from '@nebular/auth';
       </nb-layout-header>
 
 
-      <nb-sidebar responsive>
+      <nb-sidebar>
         <nb-menu [items]="menu"></nb-menu>
 
       </nb-sidebar>

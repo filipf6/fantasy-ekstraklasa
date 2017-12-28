@@ -1,14 +1,15 @@
 package com.pk.fantasyekstraklasa.controller;
 
 import com.pk.fantasyekstraklasa.logic.TeamsService;
+import com.pk.fantasyekstraklasa.logic.UsersService;
 import com.pk.fantasyekstraklasa.persistence.model.Player;
+import com.pk.fantasyekstraklasa.persistence.model.Team;
+import com.pk.fantasyekstraklasa.utils.security.JwtTokenUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,10 +18,14 @@ import java.util.List;
 @RequestMapping("/teams")
 public class TeamsController {
     private TeamsService teamsService;
+    private JwtTokenUtil jwtTokenUtil;
+    private UsersService usersService;
 
     @Autowired
-    public TeamsController(TeamsService teamsService) {
+    public TeamsController(TeamsService teamsService, JwtTokenUtil jwtTokenUtil, UsersService usersService) {
         this.teamsService = teamsService;
+        this.jwtTokenUtil = jwtTokenUtil;
+        this.usersService = usersService;
     }
 
     @RequestMapping(value = "{teamId}/addPlayer/{playerId}", method = RequestMethod.PATCH)
@@ -35,5 +40,15 @@ public class TeamsController {
         return players.isEmpty() ?
                 new ResponseEntity<>(HttpStatus.NOT_FOUND) :
                 new ResponseEntity<Object>(players, HttpStatus.OK);
+    }
+
+    @RequestMapping(value="/saveTeam", method = RequestMethod.POST,
+            produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<?> saveTeam(@RequestBody Team team, @RequestHeader(value="Authorization") String token) {
+        System.out.println("teammm: "+team);
+        token = token.substring(7);
+        String email = jwtTokenUtil.getUsernameFromToken(token);
+        Team savedTeam = usersService.setUsersTeam(email,team);
+        return new ResponseEntity<Object>(savedTeam, HttpStatus.OK);
     }
 }

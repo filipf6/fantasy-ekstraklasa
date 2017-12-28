@@ -12,13 +12,13 @@ public class JwtUser implements UserDetails {
     private final Long id;
     private final String name;
     private final String surname;
-    //private final String email;
     private final String username;
     private final String password;
     private final Date createDate;
     private final Collection<? extends GrantedAuthority> authorities;
     private final boolean enabled;
     private final Date lastPasswordResetDate;
+    private final Integer budget;
     private final Team team;
 
     public JwtUser(Long id,
@@ -30,17 +30,18 @@ public class JwtUser implements UserDetails {
                    Collection<? extends GrantedAuthority> authorities,
                    boolean enabled,
                    Date lastPasswordResetDate,
-                   Team team) { //, String email
+                   Integer budget,
+                   Team team) {
         this.id = id;
         this.name = name;
         this.surname = surname;
-        //this.email = email;
         this.username = username;
         this.password = password;
         this.createDate = createDate;
         this.authorities = authorities;
         this.enabled = enabled;
         this.lastPasswordResetDate = lastPasswordResetDate;
+        this.budget = budget;
         this.team = team;
     }
 
@@ -93,10 +94,6 @@ public class JwtUser implements UserDetails {
         return surname;
     }
 
-//    public String getEmail() {
-//        return email;
-//    }
-
     public Date getCreateDate() {
         return createDate;
     }
@@ -104,6 +101,10 @@ public class JwtUser implements UserDetails {
     @JsonIgnore
     public Date getLastPasswordResetDate() {
         return lastPasswordResetDate;
+    }
+
+    public Integer getBudget() {
+        return budget;
     }
 
     public Team getTeam() {
