@@ -4,6 +4,7 @@ import {Team} from "../../models/team.model";
 import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
 import {TeamCreationModalComponent} from "./team-creation-modal/team-creation-modal.component";
 import {Player} from "../../models/player.model";
+import {TeamPlayer} from "../../models/team-player.model";
 
 @Component({
   selector: 'team-component',
@@ -11,7 +12,7 @@ import {Player} from "../../models/player.model";
   styleUrls: ['./team.component.css']
 })
 export class TeamComponent {
-  players: Player[] = [];
+  teamPlayers: TeamPlayer[] = [];
   team: Team;
 
 
@@ -30,7 +31,11 @@ export class TeamComponent {
   }
 
   getPlayers(teamId: number) {
-      return this.teamService.getPlayers(teamId).subscribe(data => this.players = data, error => console.log('getPlayers error'));
+      return this.teamService.getPlayers(teamId).subscribe(data => {
+        //console.log('players: '+data);
+        this.teamPlayers = data;
+        //this.players.forEach(p=>console.log(p.player));
+      }, error => console.log('getPlayers error'));
   }
 
   openTeamCreationModal() {

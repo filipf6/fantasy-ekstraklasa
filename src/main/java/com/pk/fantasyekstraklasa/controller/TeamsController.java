@@ -3,6 +3,7 @@ package com.pk.fantasyekstraklasa.controller;
 import com.pk.fantasyekstraklasa.logic.TeamsService;
 import com.pk.fantasyekstraklasa.logic.UsersService;
 import com.pk.fantasyekstraklasa.persistence.model.Player;
+import com.pk.fantasyekstraklasa.persistence.model.PlayerTeam;
 import com.pk.fantasyekstraklasa.persistence.model.Team;
 import com.pk.fantasyekstraklasa.utils.security.JwtTokenUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 @RestController
 @RequestMapping("/teams")
@@ -36,7 +38,9 @@ public class TeamsController {
 
     @RequestMapping(value = "{teamId}/players", method = RequestMethod.GET)
     public ResponseEntity<?> getPlayers(@PathVariable Long teamId) {
-        List<Player> players = new ArrayList<>(teamsService.getPlayersFromTeam(teamId)); //teamsService.getPlayersFromTeam(teamId)
+        //teamsService.getPlayersFromTeam(teamId).forEach(x-> System.out.println(x));
+        List<PlayerTeam> players = new ArrayList<>(teamsService.getPlayersFromTeam(teamId)); //teamsService.getPlayersFromTeam(teamId)
+        //players.forEach(p-> System.out.println(p));
         return players.isEmpty() ?
                 new ResponseEntity<>(HttpStatus.NOT_FOUND) :
                 new ResponseEntity<Object>(players, HttpStatus.OK);
@@ -45,7 +49,7 @@ public class TeamsController {
     @RequestMapping(value="/saveTeam", method = RequestMethod.POST,
             produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> saveTeam(@RequestBody Team team, @RequestHeader(value="Authorization") String token) {
-        System.out.println("teammm: "+team);
+        //System.out.println("teammm: "+team);
         token = token.substring(7);
         String email = jwtTokenUtil.getUsernameFromToken(token);
         Team savedTeam = usersService.setUsersTeam(email,team);

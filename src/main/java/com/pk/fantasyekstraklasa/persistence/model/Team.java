@@ -11,7 +11,6 @@ import java.util.Set;
 public class Team {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    //@Column(name = "TEAM_ID")
     private Long id;
 
     @NotBlank
@@ -21,8 +20,8 @@ public class Team {
     private User user;
 
     //fetch = FetchType.LAZY,
-    @ManyToMany(mappedBy = "teams")
-    private Set<Player> players = new HashSet<>(0);
+//    @ManyToMany(mappedBy = "teams")
+//    private Set<Player> players = new HashSet<>(0);
 
     // , referencedColumnName = "TEAM_ID" \\ , referencedColumnName = "id"
     @ManyToMany(cascade = CascadeType.ALL)
@@ -32,9 +31,12 @@ public class Team {
     @OneToMany(mappedBy = "team", cascade = CascadeType.ALL)
     private Set<Transfer> transfers = new HashSet<>(0);
 
-    private Long captainId;
+    @OneToMany(mappedBy = "team", cascade = CascadeType.ALL)
+    private Set<PlayerTeam> teamPlayers = new HashSet<>(0);
 
-    private Long viceCaptainId;
+//    private Long captainId;
+//
+//    private Long viceCaptainId;
 
     public Team() {
     }
@@ -63,13 +65,13 @@ public class Team {
         this.user = user;
     }
 
-    public Set<Player> getPlayers() {
-        return players;
-    }
-
-    public void setPlayers(Set<Player> players) {
-        this.players = players;
-    }
+//    public Set<Player> getPlayers() {
+//        return players;
+//    }
+//
+//    public void setPlayers(Set<Player> players) {
+//        this.players = players;
+//    }
 
     public Set<League> getLeagues() {
         return leagues;
@@ -87,21 +89,29 @@ public class Team {
         this.transfers = transfers;
     }
 
-    public Long getCaptainId() {
-        return captainId;
+    public Set<PlayerTeam> getTeamPlayers() {
+        return teamPlayers;
     }
 
-    public void setCaptainId(Long captainId) {
-        this.captainId = captainId;
+    public void setTeamPlayers(Set<PlayerTeam> teamPlayers) {
+        this.teamPlayers = teamPlayers;
     }
 
-    public Long getViceCaptainId() {
-        return viceCaptainId;
-    }
-
-    public void setViceCaptainId(Long viceCaptainId) {
-        this.viceCaptainId = viceCaptainId;
-    }
+    //    public Long getCaptainId() {
+//        return captainId;
+//    }
+//
+//    public void setCaptainId(Long captainId) {
+//        this.captainId = captainId;
+//    }
+//
+//    public Long getViceCaptainId() {
+//        return viceCaptainId;
+//    }
+//
+//    public void setViceCaptainId(Long viceCaptainId) {
+//        this.viceCaptainId = viceCaptainId;
+//    }
 
     @Override
     public String toString() {

@@ -1,5 +1,7 @@
 package com.pk.fantasyekstraklasa.logic;
 
+import com.pk.fantasyekstraklasa.persistence.model.PlayerTeam;
+import com.pk.fantasyekstraklasa.persistence.repository.PlayerTeamRepository;
 import com.pk.fantasyekstraklasa.utils.errorHandling.customExceptions.NotFoundException;
 import com.pk.fantasyekstraklasa.persistence.model.Player;
 import com.pk.fantasyekstraklasa.persistence.model.Team;
@@ -18,12 +20,14 @@ public class TeamsService {
     private TeamsRepository teamsRepository;
     private PlayersRepository playersRepository;
     private TransfersRepository transfersRepository;
+    private PlayerTeamRepository playerTeamRepository;
 
     @Autowired
-    public TeamsService(TeamsRepository teamsRepository, PlayersRepository playersRepository, TransfersRepository transferRepository) {
+    public TeamsService(TeamsRepository teamsRepository, PlayersRepository playersRepository, TransfersRepository transferRepository, PlayerTeamRepository playerTeamRepository) {
         this.teamsRepository = teamsRepository;
         this.playersRepository = playersRepository;
         this.transfersRepository = transferRepository;
+        this.playerTeamRepository = playerTeamRepository;
     }
 
     public void addPlayerToTheTeam(Long teamId, Long playerId) {
@@ -32,31 +36,34 @@ public class TeamsService {
 
         if (player == null || team == null) throw new NotFoundException();
 
-        Set<Team> teams = player.getTeams();
-        teams.add(team);
-        player.setTeams(teams);
-
+        PlayerTeam playerTeam = new PlayerTeam(player,team,false,false,false,null);
         Transfer transfer = new Transfer();
         transfer.setTransferType(TransferType.IN);
         transfer.setPlayer(player);
         transfer.setTeam(team);
         transfersRepository.saveAndFlush(transfer);
-        playersRepository.saveAndFlush(player);
-
-        //player.getTransfers().add(transfer);
-        //Set<Team> teams = player.getTeams();
-        //teams.add(team);
-        //player.setTeams(teams);
-        //team.getTransfers().add(transfer);
-        //team.getPlayers().add(player);
-        //playersRepository.saveAndFlush(player);
-        //teamsRepository.saveAndFlush(team);
+        playerTeamRepository.saveAndFlush(playerTeam);
+//
+//        Set<Team> teams = player.getTeams();
+//        teams.add(team);
+//        player.setTeams(teams);
+//
+//        Transfer transfer = new Transfer();
+//        transfer.setTransferType(TransferType.IN);
+//        transfer.setPlayer(player);
+//        transfer.setTeam(team);
+//        transfersRepository.saveAndFlush(transfer);
+//        playersRepository.saveAndFlush(player);
     }
 
-    public Set<Player> getPlayersFromTeam(Long teamId) {
+    public Set<PlayerTeam> getPlayersFromTeam(Long teamId) {
         Team team = teamsRepository.findOne(teamId);
         if (team == null) throw new NotFoundException();
-        return team.getPlayers();
+        Set<PlayerTeam> teamsPlayers = team.getTeamPlayers();
+        if(teamsPlayers == null) {
+            throw new NotFoundException();
+        }
+        return teamsPlayers;
     }
 
 //    public Team saveTeam(Team team) {

@@ -14,7 +14,6 @@ import java.util.Set;
 public class Player {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    //@Column(name = "PLAYER_ID")
     private Long id;
 
     @NotBlank
@@ -41,10 +40,13 @@ public class Player {
     @OneToMany(mappedBy = "player", cascade = CascadeType.ALL)
     private Set<Transfer> transfers = new HashSet<>(0);
 
+    @OneToMany(mappedBy = "player", cascade = CascadeType.ALL)
+    private Set<PlayerTeam> playerTeams = new HashSet<>(0);
+
     // fetch = FetchType.LAZY,
-    @ManyToMany(cascade = CascadeType.ALL)
-    @JoinTable(name = "player_team", joinColumns = {@JoinColumn(name = "PLAYER_ID")}, inverseJoinColumns = { @JoinColumn(name="TEAM_ID") })//@JoinColumn(name = "players_id", referencedColumnName = "id"), inverseJoinColumns = @JoinColumn(name = "teams_id", referencedColumnName = "id"))
-    private Set<Team> teams = new HashSet<>(0);
+//    @ManyToMany(cascade = CascadeType.ALL)
+//    @JoinTable(name = "player_team", joinColumns = {@JoinColumn(name = "PLAYER_ID")}, inverseJoinColumns = { @JoinColumn(name="TEAM_ID") })//@JoinColumn(name = "players_id", referencedColumnName = "id"), inverseJoinColumns = @JoinColumn(name = "teams_id", referencedColumnName = "id"))
+//    private Set<Team> teams = new HashSet<>(0);
 
     public Player() {
     }
@@ -113,13 +115,20 @@ public class Player {
         this.transfers = transfers;
     }
 
-    public Set<Team> getTeams() {
-        return teams;
+    public Set<PlayerTeam> getPlayerTeams() {
+        return playerTeams;
     }
 
-    public void setTeams(Set<Team> teams) {
-        this.teams = teams;
+    public void setPlayerTeams(Set<PlayerTeam> playerTeams) {
+        this.playerTeams = playerTeams;
     }
+    //    public Set<Team> getTeams() {
+//        return teams;
+//    }
+//
+//    public void setTeams(Set<Team> teams) {
+//        this.teams = teams;
+//    }
 
     @Override
     public boolean equals(Object o) {

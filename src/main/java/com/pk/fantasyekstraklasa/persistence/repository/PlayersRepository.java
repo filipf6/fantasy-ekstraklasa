@@ -9,5 +9,5 @@ import java.util.List;
 
 @Repository
 public interface PlayersRepository extends JpaRepository<Player, Long> {
-    List<Player> findPlayersByTeams(Team team);
+//    List<Player> findPlayersByTeams(Team team);
 }

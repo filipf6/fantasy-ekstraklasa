@@ -7,6 +7,7 @@ import {routing} from './team.routing';
 import {ThemeModule} from "../../@theme/theme.module";
 import {TeamCreationModalComponent} from "./team-creation-modal/team-creation-modal.component";
 import {PlayerPositionFilterPipe} from "./player-position-filter.pipe";
+import {FirstSquadFilterPipe} from "./team-pipes/first-squad-filter.pipe";
 
 
 @NgModule({
@@ -19,7 +20,8 @@ import {PlayerPositionFilterPipe} from "./player-position-filter.pipe";
   declarations: [
     TeamComponent,
     TeamCreationModalComponent,
-    PlayerPositionFilterPipe
+    PlayerPositionFilterPipe,
+    FirstSquadFilterPipe
   ],
   entryComponents: [TeamCreationModalComponent],
 })

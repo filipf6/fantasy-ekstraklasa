@@ -1,8 +1,8 @@
 import {Injectable} from "@angular/core";
-import {Player} from "../../models/player.model";
 import {Observable} from "rxjs/Observable";
 import {RestService} from "../../utils/rest.service";
 import {Team} from "../../models/team.model";
+import {TeamPlayer} from "../../models/team-player.model";
 
 @Injectable()
 export class TeamService {
@@ -10,7 +10,7 @@ export class TeamService {
   constructor(private restService: RestService) {
   }
 
-  getPlayers(teamId: number): Observable<Player[]> {
+  getPlayers(teamId: number): Observable<TeamPlayer[]> {
     return this.restService.get(`teams/${teamId}/players`);
   }
 

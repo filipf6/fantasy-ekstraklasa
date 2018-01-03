@@ -2,10 +2,7 @@ package com.pk.fantasyekstraklasa.utils;
 
 import com.fasterxml.jackson.core.JsonGenerator;
 import com.fasterxml.jackson.databind.SerializerProvider;
-import com.pk.fantasyekstraklasa.persistence.model.League;
-import com.pk.fantasyekstraklasa.persistence.model.Player;
-import com.pk.fantasyekstraklasa.persistence.model.Team;
-import com.pk.fantasyekstraklasa.persistence.model.User;
+import com.pk.fantasyekstraklasa.persistence.model.*;
 import org.springframework.boot.jackson.JsonComponent;
 import org.springframework.boot.jackson.JsonObjectSerializer;
 
@@ -53,6 +50,19 @@ public class Serializer {
             jsonGenerator.writeNumberField("id",team.getId());
             jsonGenerator.writeStringField("name", team.getName());
             jsonGenerator.writeObjectField("user", team.getUser());
+        }
+    }
+
+    public static class PlayerTeamSerializer extends JsonObjectSerializer<PlayerTeam> {
+        @Override
+        protected void serializeObject(PlayerTeam playerTeam, JsonGenerator jsonGenerator, SerializerProvider serializerProvider) throws IOException {
+            jsonGenerator.writeNumberField("id",playerTeam.getId());
+            jsonGenerator.writeObjectField("player", playerTeam.getPlayer());
+            jsonGenerator.writeBooleanField("firstSquad", playerTeam.isFirstSquad());
+            jsonGenerator.writeBooleanField("captain", playerTeam.isCaptain());
+            jsonGenerator.writeBooleanField("viceCaptain", playerTeam.isViceCaptain());
+            if(playerTeam.getAccuratePosition()==null) jsonGenerator.writeStringField("accuratePosition", null);
+            else jsonGenerator.writeStringField("accuratePosition", playerTeam.getAccuratePosition().toString());
         }
     }
 }
