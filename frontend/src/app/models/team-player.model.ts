@@ -8,3 +8,4 @@ export class TeamPlayer {
   viceCaptain: boolean;
   accuratePosition: string;
 }
+

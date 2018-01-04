@@ -28,11 +28,11 @@
                       <img src="assets/images/empty_shirt.png" width="50%">
                       <!--<div class="text">Andrzej</div>-->
                     </div>
-                    <div class="player player-left-defender">
+                    <div id="left-defender" class="player player-left-defender">
                       <img src="assets/images/empty_shirt.png" width="50%">
                       <!--<div class="text">Andrzej</div>-->
                     </div>
-                    <div class="player player-right-midfielder">
+                    <div id="right-midfielder" class="player player-right-midfielder">
                       <img src="assets/images/empty_shirt.png" width="50%">
                       <!--<div class="text">Andrzej</div>-->
                     </div>
@@ -56,18 +56,22 @@
                       <img src="assets/images/empty_shirt.png" width="50%">
                       <div class="text"></div>
                     </div>
-                    <div *ngFor="let teamPlayer of teamPlayers | firstSquadFilter">
-                      <div [ngSwitch]="teamPlayer.accuratePosition">
-                        <div *ngSwitchCase="'GK'" class="player player-goalkeeper">
-                          <img src="assets/images/shirt.png" width="50%">
-                          <div class="text">{{teamPlayer.player.name}} {{teamPlayer.player.surname}}</div>
-                        </div>
-                        <div *ngSwitchCase="'RB'" class="player player-right-defender">
-                          <img src="assets/images/shirt.png" width="50%">
-                          <div class="text">{{teamPlayer.player.name}} {{teamPlayer.player.surname}}</div>
-                        </div>
-                      </div>
+                    <!--<div *ngFor="let teamPlayer of teamPlayers | firstSquadFilter">-->
+                      <!--<div [ngSwitch]="teamPlayer.accuratePosition">-->
+                        <!--<div *ngSwitchCase="'GK'" class="player player-goalkeeper">-->
+                          <!--<img src="assets/images/shirt.png" width="50%">-->
+                          <!--<div class="text">{{teamPlayer.player.name}} {{teamPlayer.player.surname}}</div>-->
+                        <!--</div>-->
+                        <!--<div *ngSwitchCase="'RB'" class="player player-right-defender">-->
+                          <!--<img src="assets/images/shirt.png" width="50%">-->
+                          <!--<div class="text">{{teamPlayer.player.name}} {{teamPlayer.player.surname}}</div>-->
+                        <!--</div>-->
+                      <!--</div>-->
+                    <!--</div>-->
+                    <div *ngFor="let position of accuratePositions">
+                      <p>{{position}}</p>
                     </div>
+
                   </div>
                 </div>
               </div>
@@ -79,25 +83,25 @@
                 <div class="inner">
                   <b>Bramkarze:</b>
                   <div *ngFor="let teamPlayer of teamPlayers | positionFilter:'GOALKEEPER':false">
-                    <div><img src="assets/images/shirt.png">{{teamPlayer.player.name}} {{teamPlayer.player.surname}}</div>
+                    <div>{{teamPlayer.player.name}} {{teamPlayer.player.surname}}</div><i class="fa fa-plus" aria-hidden="true"></i>
                   </div>
                 </div>
                 <div class="inner">
                   <b>Obrońcy:</b>
                   <div *ngFor="let teamPlayer of teamPlayers | positionFilter:'DEFENDER':false">
-                    <p>{{teamPlayer.player.name}} {{teamPlayer.player.surname}}</p>
+                    <p>{{teamPlayer.player.name}} {{teamPlayer.player.surname}}</p><i class="fa fa-plus" aria-hidden="true"></i>
                   </div>
                 </div>
                 <div class="inner">
                   <b>Pomocnicy:</b>
                   <div *ngFor="let teamPlayer of teamPlayers | positionFilter:'MIDFIELDER':false">
-                    <div><img src="assets/images/shirt.png" width="10%"> {{teamPlayer.player.name}} {{teamPlayer.player.surname}}</div>
+                    <div class="showIconOnHover"> {{teamPlayer.player.name}} {{teamPlayer.player.surname}} <i (click)="addToFirstTeam()" style="color: springgreen" class="fa fa-plus" aria-hidden="true" ></i></div>
                   </div>
                 </div>
                 <div class="inner">
                   <b>Napastnicy:</b>
                   <div *ngFor="let teamPlayer of teamPlayers | positionFilter:'FORWARD':false">
-                    <p>{{teamPlayer.player.name}} {{teamPlayer.player.surname}}</p>
+                    <p>{{teamPlayer.player.name}} {{teamPlayer.player.surname}}</p><i class="fa fa-plus" aria-hidden="true"></i>
                   </div>
                 </div>
               </div>

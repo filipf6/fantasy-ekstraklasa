@@ -21,6 +21,14 @@
   /*color: #494299;*/
 }
 
+i {
+  display: none;
+}
+
+.showIconOnHover:hover i {
+  display: inline;
+}
+
 .pitch {
   position: relative;
   background-image: url("/assets/images/pitch.png");

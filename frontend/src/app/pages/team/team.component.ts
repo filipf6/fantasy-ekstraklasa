@@ -3,8 +3,9 @@ import {TeamService} from "./team.service";
 import {Team} from "../../models/team.model";
 import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
 import {TeamCreationModalComponent} from "./team-creation-modal/team-creation-modal.component";
-import {Player} from "../../models/player.model";
 import {TeamPlayer} from "../../models/team-player.model";
+import {DragulaService} from "ng2-dragula";
+import {accuratePositions} from "../../models/global";
 
 @Component({
   selector: 'team-component',
@@ -16,8 +17,15 @@ export class TeamComponent {
   team: Team;
 
 
-  constructor(private teamService: TeamService, private modalService: NgbModal) {
+  constructor(private teamService: TeamService, private modalService: NgbModal, private dragula: DragulaService) {
     this.getTeam();
+  }
+
+  get accuratePositions() {
+    return accuratePositions;
+  }
+
+  addToFirstTeam() {
 
   }
 

@@ -11,7 +11,7 @@ import {NgbModule} from "@ng-bootstrap/ng-bootstrap";
 import {CoreModule} from "./@core/core.module";
 import {AuthenticationService} from "./auth/auth.service";
 import {CanActivateAuthGuard} from "./auth/can-activate.authguard";
-import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+// import {DragulaModule} from "ng2-dragula";
 // import {NB_AUTH_TOKEN_WRAPPER_TOKEN, NbAuthJWTToken, NbAuthModule, NbEmailPassAuthProvider} from "@nebular/auth";
 // import {PagesModule} from "./pages/pages.module";
 // import {LoginModule} from "./auth/login/login.module";
@@ -21,6 +21,7 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
     AppComponent
   ],
   imports: [
+    // DragulaModule,
     BrowserModule,
     BrowserAnimationsModule,
     HttpModule,
