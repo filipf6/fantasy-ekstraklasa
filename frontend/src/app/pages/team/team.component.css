@@ -21,12 +21,32 @@
   /*color: #494299;*/
 }
 
-i {
+.icons {
+  position: absolute;
   display: none;
 }
 
-.showIconOnHover:hover i {
+.icon-cross {
+  color: red;
+  top: -5%;
+  left: 90%;
+  font-size: 2vw;
+}
+
+.icon-change {
+  top: 30%;
+  left: 90%;
+  font-size: 1.7vw;
+  color: #484298;
+}
+
+.showIconsOnHover:hover .icons {
   display: inline;
+}
+
+.showIconsOnHover:hover img {
+  width: 80%;
+  height: 80%;
 }
 
 .pitch {
@@ -40,7 +60,7 @@ i {
 .player {
   position: absolute;
   width: 14%;
-  display:table-cell;
+  /*display:table-cell;*/
   text-align: center;
   /*background-size: 25% 25%;*/
 }

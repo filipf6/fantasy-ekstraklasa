@@ -10,6 +10,6 @@ export const accuratePositions: AccuratePosition[] = [
   AccuratePosition.CRM,
   AccuratePosition.CLM,
   AccuratePosition.LM,
-  AccuratePosition.RF,
-  AccuratePosition.LF
+  AccuratePosition.RS,
+  AccuratePosition.LS
 ];

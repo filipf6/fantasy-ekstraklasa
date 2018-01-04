@@ -21,4 +21,6 @@ export class TeamService {
   setTeam(team: Team): Observable<Team> {
     return this.restService.post(`teams/saveTeam`, team);
   }
+
+  // addPlayerToFirstSquad(teamPlayerId):
 }

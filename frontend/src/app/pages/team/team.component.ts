@@ -6,6 +6,7 @@ import {TeamCreationModalComponent} from "./team-creation-modal/team-creation-mo
 import {TeamPlayer} from "../../models/team-player.model";
 import {DragulaService} from "ng2-dragula";
 import {accuratePositions} from "../../models/global";
+import {AccuratePosition} from "../../models/enums/accurate-position.enum";
 
 @Component({
   selector: 'team-component',
@@ -15,7 +16,7 @@ import {accuratePositions} from "../../models/global";
 export class TeamComponent {
   teamPlayers: TeamPlayer[] = [];
   team: Team;
-
+  firstSquadPlayers: TeamPlayer[] = [];
 
   constructor(private teamService: TeamService, private modalService: NgbModal, private dragula: DragulaService) {
     this.getTeam();
@@ -25,15 +26,19 @@ export class TeamComponent {
     return accuratePositions;
   }
 
-  addToFirstTeam() {
+  removePlayerFromFirstSquad(teamPlayerId) {
+
+  }
+
+  addPlayerToFirstSquad(teamPlayerId) {
 
   }
 
   getTeam() {
     this.teamService.getTeam().subscribe(data => {
-      console.log('data: '+data);
+      //console.log('data: '+data);
       this.team = data;
-      console.log(this.team);
+      //console.log(this.team);
       if(this.team) this.getPlayers(this.team.id);
     });
   }
@@ -43,6 +48,10 @@ export class TeamComponent {
         //console.log('players: '+data);
         this.teamPlayers = data;
         //this.players.forEach(p=>console.log(p.player));
+        for(let i=0; i<11; i++) {
+          this.firstSquadPlayers[i] = this.teamPlayers.find(player=>player.firstSquad && player.accuratePosition===accuratePositions[i]);
+        }
+        this.firstSquadPlayers.forEach(p=>console.log(p));
       }, error => console.log('getPlayers error'));
   }
 
