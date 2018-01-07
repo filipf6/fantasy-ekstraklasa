@@ -9,184 +9,87 @@
                 <div class="inner">
                   <p>Nazwa drużyny: <b>{{team.name}}</b></p>
                   <div class="pitch">
-                    <div class="player player-goalkeeper">
-                      <div class="showIconsOnHover" *ngIf="firstSquadPlayers[0]; else emptyShirt">
-                        <div align="center">
-                          <img src="assets/images/shirt.png" width="50%">
-                            <i (click)="removePlayerFromFirstSquad(firstSquadPlayers[0], 0)" class="fa fa-times icons icon-cross" aria-hidden="true" style="margin-bottom: 20%"></i>
-                            <i class="fa fa-refresh icons icon-change" aria-hidden="true"></i>
-                        </div>
-                        <div class="text">{{firstSquadPlayers[0].player.name}} {{firstSquadPlayers[0].player.surname}}</div>
-                      </div>
-                      <ng-template #emptyShirt>
-                        <img src="assets/images/empty_shirt.png" width="50%">
-                      </ng-template>
-                    </div>
-                    <div class="player player-right-defender">
-                      <div *ngIf="firstSquadPlayers[1]; else emptyShirt">
-                        <img src="assets/images/shirt.png" width="50%">
-                        <div class="text">{{firstSquadPlayers[1].player.name}} {{firstSquadPlayers[1].player.surname}}</div>
-                      </div>
-                      <ng-template #emptyShirt>
-                        <img src="assets/images/empty_shirt.png" width="50%">
-                      </ng-template>
-                    </div>
-                    <div class="player player-center1-defender">
-                      <div *ngIf="firstSquadPlayers[2]; else emptyShirt">
-                        <img src="assets/images/shirt.png" width="50%">
-                        <div class="text">{{firstSquadPlayers[2].player.name}} {{firstSquadPlayers[2].player.surname}}</div>
-                      </div>
-                      <ng-template #emptyShirt>
-                        <img src="assets/images/empty_shirt.png" width="50%">
-                      </ng-template>
-                    </div>
-                    <div class="player player-center2-defender">
-                      <div *ngIf="firstSquadPlayers[3]; else emptyShirt">
-                        <img src="assets/images/shirt.png" width="50%">
-                        <div class="text">{{firstSquadPlayers[3].player.name}} {{firstSquadPlayers[3].player.surname}}</div>
-                      </div>
-                      <ng-template #emptyShirt>
-                        <img src="assets/images/empty_shirt.png" width="50%">
-                      </ng-template>
-                    </div>
-                    <div id="left-defender" class="player player-left-defender">
-                      <div *ngIf="firstSquadPlayers[4]; else emptyShirt">
-                        <img src="assets/images/shirt.png" width="50%">
-                        <div class="text">{{firstSquadPlayers[4].player.name}} {{firstSquadPlayers[4].player.surname}}</div>
-                      </div>
-                      <ng-template #emptyShirt>
-                        <img src="assets/images/empty_shirt.png" width="50%">
-                      </ng-template>
-                    </div>
-                    <div id="right-midfielder" class="player player-right-midfielder">
-                      <div *ngIf="firstSquadPlayers[5]; else emptyShirt">
-                        <img src="assets/images/shirt.png" width="50%">
-                        <div class="text">{{firstSquadPlayers[5].player.name}} {{firstSquadPlayers[5].player.surname}}</div>
-                      </div>
-                      <ng-template #emptyShirt>
-                        <img src="assets/images/empty_shirt.png" width="50%">
-                      </ng-template>
-                    </div>
-                    <div class="player player-center1-midfielder">
-                      <div *ngIf="firstSquadPlayers[6]; else emptyShirt">
-                        <img src="assets/images/shirt.png" width="50%">
-                        <div class="text">{{firstSquadPlayers[6].player.name}} {{firstSquadPlayers[6].player.surname}}</div>
-                      </div>
-                      <ng-template #emptyShirt>
-                        <img src="assets/images/empty_shirt.png" width="50%">
-                      </ng-template>
-                    </div>
-                    <div class="player player-center2-midfielder">
-                      <div *ngIf="firstSquadPlayers[7]; else emptyShirt">
-                        <img src="assets/images/shirt.png" width="50%">
-                        <div class="text">{{firstSquadPlayers[7].player.name}} {{firstSquadPlayers[7].player.surname}}</div>
-                      </div>
-                      <ng-template #emptyShirt>
-                        <img src="assets/images/empty_shirt.png" width="50%">
-                      </ng-template>
-                    </div>
-                    <div class="player player-left-midfielder">
-                      <div *ngIf="firstSquadPlayers[8]; else emptyShirt">
-                        <img src="assets/images/shirt.png" width="50%">
-                        <div class="text">{{firstSquadPlayers[8].player.name}} {{firstSquadPlayers[8].player.surname}}</div>
-                      </div>
-                      <ng-template #emptyShirt>
-                        <img src="assets/images/empty_shirt.png" width="50%">
-                      </ng-template>
-                    </div>
-                    <div class="player player-left-forward">
-                      <div *ngIf="firstSquadPlayers[9]; else emptyShirt">
-                        <img src="assets/images/shirt.png" width="50%">
-                        <div class="text">{{firstSquadPlayers[9].player.name}} {{firstSquadPlayers[9].player.surname}}</div>
-                      </div>
-                      <ng-template #emptyShirt>
-                        <img src="assets/images/empty_shirt.png" width="50%">
-                      </ng-template>
-                    </div>
-                    <div class="player player-right-forward">
-                      <div *ngIf="firstSquadPlayers[10]; else emptyShirt">
-                        <img src="assets/images/shirt.png" width="50%">
-                        <div class="text">{{firstSquadPlayers[10].player.name}} {{firstSquadPlayers[10].player.surname}}</div>
-                      </div>
-                      <ng-template #emptyShirt>
-                        <img src="assets/images/empty_shirt.png" width="50%">
-                      </ng-template>
-                    </div>
-                    <!--<div *ngFor="let teamPlayer of teamPlayers | firstSquadFilter">-->
-                      <!--<div [ngSwitch]="teamPlayer.accuratePosition">-->
-                        <!--<div *ngSwitchCase="'GK'" class="player player-goalkeeper">-->
-                          <!--<img src="assets/images/shirt.png" width="50%">-->
-                          <!--<div class="text">{{teamPlayer.player.name}} {{teamPlayer.player.surname}}</div>-->
-                        <!--</div>-->
-                        <!--<div *ngSwitchCase="'RB'" class="player player-right-defender">-->
-                          <!--<img src="assets/images/shirt.png" width="50%">-->
-                          <!--<div class="text">{{teamPlayer.player.name}} {{teamPlayer.player.surname}}</div>-->
-                        <!--</div>-->
-                      <!--</div>-->
-                    <!--</div>-->
-                    <!--<div *ngFor="let position of accuratePositions">-->
-                      <!--<div *ngFor="let player of teamPlayers">-->
-                        <!--<div *ngIf="player.firstSquad&&player.accuratePosition===position">-->
-                          <!---->
-                        <!--</div>-->
-                      <!--</div>-->
-                      <!--<div *ngIf="getFirstSquadPlayer(position)">-->
-                      <!---->
-                      <!--</div>-->
-                    <!--</div>-->
+                    <player-component *ngFor="let player of firstSquadPlayers; let i=index" [teamPlayer]="player"
+                                      [accuratePosition]="accuratePositions[i]"
+                                      (removePlayer)="removePlayerFromFirstSquad($event)"
+                                      (addPlayer)="selectPlayerToAdd($event)"
+                                      (substitutePlayer)="selectPlayerToSubstituteIn($event)"></player-component>
                   </div>
                 </div>
               </div>
 
               <div class="col-md-4 box">
-                  <div class="inner" style="text-align: center">
-                    <p>Ławka rezerwowych</p>
-                  </div>
+                <div class="inner" style="text-align: center">
+                  <p>Ławka rezerwowych</p>
+                </div>
 
-                  <div class="inner">
-                    <b>Bramkarze:</b>
-                    <div *ngFor="let teamPlayer of teamPlayers | positionFilter:'GOALKEEPER':false">
-                      <div>{{teamPlayer.player.name}} {{teamPlayer.player.surname}}</div>
+                <div class="inner">
+                  <b>Bramkarze:</b>
+                  <div *ngFor="let teamPlayer of teamPlayers | positionFilter:'GOALKEEPER':false"
+                       [class.pointer]="!addIconsHidden[0]"
+                       (click)="!addIconsHidden[0] && addPlayerToFirstSquad(teamPlayer.id, tempAccuratePosition)">
+                       <!--(click)="!substitutionIconsHidden[0] && substitutePlayers(teamPlayer.id)">-->
+                    <div>
+                      <i [hidden]="addIconsHidden[0]" class="fa fa-plus" aria-hidden="true"></i>
+                      <div style="display: inline;">{{teamPlayer.player.name}} {{teamPlayer.player.surname}}</div>
                     </div>
-                  </div>
-                  <div class="inner">
-                    <b>Obrońcy:</b>
-                    <div *ngFor="let teamPlayer of teamPlayers | positionFilter:'DEFENDER':false">
-                      <p>{{teamPlayer.player.name}} {{teamPlayer.player.surname}}</p>
-                    </div>
-                  </div>
-                  <div class="inner">
-                    <b>Pomocnicy:</b>
-                    <div *ngFor="let teamPlayer of teamPlayers | positionFilter:'MIDFIELDER':false">
-                      <div> {{teamPlayer.player.name}} {{teamPlayer.player.surname}}
-                      </div>
-                    </div>
-                  </div>
-                  <div class="inner">
-                    <b>Napastnicy:</b>
-                    <div *ngFor="let teamPlayer of teamPlayers | positionFilter:'FORWARD':false">
-                      <p>{{teamPlayer.player.name}} {{teamPlayer.player.surname}}</p>
-                    </div>
+                    <!--<div>-->
+                      <!--<i [hidden]="substitutionIconsHidden[0]" class="fa fa-refresh" aria-hidden="true"></i>-->
+                      <!--<div style="display: inline;">{{teamPlayer.player.name}} {{teamPlayer.player.surname}}</div>-->
+                    <!--</div>-->
+
+
                   </div>
                 </div>
-            </div>
-          </div>
-
-            <ng-template #setUpTeam>
-              <div class="container-fluid">
-                <div class="row">
-                  <div class="col-md-9">
-                    <p>Nie masz jeszcze drużyny. Kliknij przycisk aby skompletować zespół i dołączyć do rywalizacji z
-                      innymi
-                      użytkownikami!</p>
+                <div class="inner">
+                  <b>Obrońcy:</b>
+                  <div *ngFor="let teamPlayer of teamPlayers | positionFilter:'DEFENDER':false"
+                       [class.pointer]="!addIconsHidden[1]"
+                       (click)="addPlayerToFirstSquad(teamPlayer.id, tempAccuratePosition)">
+                    <i [hidden]="addIconsHidden[1]" class="fa fa-plus icons" aria-hidden="true"></i>
+                    <!--<i [hidden]="substitutionIconsHidden[1]" class="fa fa-refresh" aria-hidden="true"></i>-->
+                    <p style="display: inline;">{{teamPlayer.player.name}} {{teamPlayer.player.surname}}</p>
                   </div>
-                  <div class="col-md-3 text-right">
-                    <button class="btn btn-hero-primary btn-demo" (click)="openTeamCreationModal()">Załóż drużynę
-                    </button>
+                </div>
+                <div class="inner">
+                  <b>Pomocnicy:</b>
+                  <div *ngFor="let teamPlayer of teamPlayers | positionFilter:'MIDFIELDER':false"
+                       [class.pointer]="!addIconsHidden[2]"
+                       (click)="addPlayerToFirstSquad(teamPlayer.id, tempAccuratePosition)">
+                    <i [hidden]="addIconsHidden[2]" class="fa fa-plus icons" aria-hidden="true"></i>
+                    <!--<i [hidden]="substitutionIconsHidden[2]" class="fa fa-refresh" aria-hidden="true"></i>-->
+                    <div style="display: inline;"> {{teamPlayer.player.name}} {{teamPlayer.player.surname}}</div>
+                  </div>
+                </div>
+                <div class="inner">
+                  <b>Napastnicy:</b>
+                  <div *ngFor="let teamPlayer of teamPlayers | positionFilter:'FORWARD':false"
+                       [class.pointer]="!addIconsHidden[3]"
+                       (click)="addPlayerToFirstSquad(teamPlayer.id, tempAccuratePosition)">
+                    <i [hidden]="addIconsHidden[3]" class="fa fa-plus icons" aria-hidden="true"></i>
+                    <!--<i [hidden]="substitutionIconsHidden[3]" class="fa fa-refresh" aria-hidden="true"></i>-->
+                    <p style="display: inline;">{{teamPlayer.player.name}} {{teamPlayer.player.surname}}</p>
                   </div>
                 </div>
               </div>
-            </ng-template>
+            </div>
+          </div>
+
+          <ng-template #setUpTeam>
+            <div class="container-fluid">
+              <div class="row">
+                <div class="col-md-9">
+                  <p>Nie masz jeszcze drużyny. Kliknij przycisk aby skompletować zespół i dołączyć do rywalizacji z
+                    innymi
+                    użytkownikami!</p>
+                </div>
+                <div class="col-md-3 text-right">
+                  <button class="btn btn-hero-primary btn-demo" (click)="openTeamCreationModal()">Załóż drużynę
+                  </button>
+                </div>
+              </div>
+            </div>
+          </ng-template>
         </nb-tab>
         <nb-tab tabTitle="Transfery">
           <span>Content #2</span>

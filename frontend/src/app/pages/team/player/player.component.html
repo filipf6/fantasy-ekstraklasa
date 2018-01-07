@@ -1,0 +1,17 @@
+<div class="player" [ngClass]="getPlayerClass()">
+  <div class="showIconsOnHover" *ngIf="teamPlayer; else emptyShirt">
+    <div>
+      <img src="assets/images/shirt.png" width="50%">
+      <i (click)="removePlayerFromFirstSquad()" class="fa fa-times icons icon-cross"
+         aria-hidden="true"></i>
+      <i (click)="substitutePlayers()" class="fa fa-refresh icons icon-change" aria-hidden="true"></i>
+    </div>
+    <div class="text">{{teamPlayer.player.name}} {{teamPlayer.player.surname}}</div>
+  </div>
+  <ng-template #emptyShirt>
+    <div class="showIconsOnHover">
+      <img src="assets/images/empty_shirt.png" width="50%">
+      <i (click)="addPlayerToFirstSquad()" class="fa fa-plus icons icon-plus" aria-hidden="true"></i>
+    </div>
+  </ng-template>
+</div>

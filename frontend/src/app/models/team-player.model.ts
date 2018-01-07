@@ -7,5 +7,9 @@ export class TeamPlayer {
   captain: boolean;
   viceCaptain: boolean;
   accuratePosition: string;
+
+  constructor(accuratePosition: string) {
+    this.accuratePosition = accuratePosition;
+  }
 }
 

@@ -1,0 +1,119 @@
+.player {
+  position: absolute;
+  width: 14%;
+  /*display:table-cell;*/
+  text-align: center;
+  /*background-size: 25% 25%;*/
+}
+
+.player-goalkeeper {
+  top: 1%;
+  left: 43%;
+}
+
+.player-left-defender {
+  top: 23%;
+  left: 82%;
+}
+
+.player-center-right-defender {
+  top: 23%;
+  left: 30%;
+}
+
+.player-center-left-defender {
+  top: 23%;
+  left: 56%;
+}
+
+.player-right-defender {
+  top: 23%;
+  left: 4%;
+}
+
+.player-left-defender {
+  top: 23%;
+  left: 82%;
+}
+
+.player-center-right-midfielder {
+  top: 48%;
+  left: 30%;
+}
+
+.player-center-left-midfielder {
+  top: 48%;
+  left: 56%;
+}
+
+.player-right-midfielder {
+  top: 48%;
+  left: 4%;
+}
+
+.player-left-midfielder {
+  top: 48%;
+  left: 82%;
+}
+
+.player-left-forward {
+  top: 75%;
+  left: 30%;
+}
+
+.player-right-forward {
+  top: 75%;
+  left: 56%;
+}
+
+.text {
+  text-align: center;
+  font-size: 1.5vw;
+  color: black;
+  /*color: #494299;*/
+}
+
+.icons {
+  position: absolute;
+  display: none;
+  cursor: pointer;
+}
+
+.icon-cross {
+  color: red;
+  top: -5%;
+  left: 90%;
+  font-size: 2vw;
+}
+
+.icon-change {
+  top: 30%;
+  left: 90%;
+  font-size: 1.7vw;
+  color: #484298;
+}
+
+.icon-plus {
+  top: 30%;
+  left: 36%;
+  font-size: 2vw;
+  color: darkgreen;
+}
+
+.showIconsOnHover:hover .icons {
+  display: inline;
+}
+
+.showIconsOnHover:hover img {
+  width: 80%;
+  height: 80%;
+}
+
+.addingModeImg {
+  width: 80%;
+  height: 80%;
+}
+
+.addingModeIcons {
+  display: inline;
+}

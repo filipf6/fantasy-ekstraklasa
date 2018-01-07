@@ -11,22 +11,17 @@ import {CoreModule} from "./@core/core.module";
 import {AuthenticationService} from "./auth/auth.service";
 import {CanActivateAuthGuard} from "./auth/can-activate.authguard";
 import {NgbModule} from "@ng-bootstrap/ng-bootstrap";
-// import {DragulaModule} from "ng2-dragula";
-// import {NB_AUTH_TOKEN_WRAPPER_TOKEN, NbAuthJWTToken, NbAuthModule, NbEmailPassAuthProvider} from "@nebular/auth";
-// import {PagesModule} from "./pages/pages.module";
-// import {LoginModule} from "./auth/login/login.module";
+
 
 @NgModule({
   declarations: [
     AppComponent
   ],
   imports: [
-    // DragulaModule,
     BrowserModule,
     BrowserAnimationsModule,
     HttpModule,
     AppRoutingModule,
-    //LoginModule,
 
     NgbModule.forRoot(),
     CoreModule.forRoot(),
@@ -70,8 +65,7 @@ import {NgbModule} from "@ng-bootstrap/ng-bootstrap";
   ],
   providers: [{provide: APP_BASE_HREF, useValue: '/'}, AuthenticationService, CanActivateAuthGuard ],
 
-  //providers: [{provide: APP_BASE_HREF, useValue: '/'},{ provide: NB_AUTH_TOKEN_WRAPPER_TOKEN, useClass: NbAuthJWTToken },],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
 export class AppModule {
 }

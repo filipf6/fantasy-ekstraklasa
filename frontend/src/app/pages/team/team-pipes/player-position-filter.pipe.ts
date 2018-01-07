@@ -1,5 +1,5 @@
 import {Pipe, PipeTransform} from "@angular/core";
-import {TeamPlayer} from "../../models/team-player.model";
+import {TeamPlayer} from "../../../models/team-player.model";
 
 @Pipe({ name: 'positionFilter' })
 export class PlayerPositionFilterPipe implements PipeTransform {

@@ -21,6 +21,12 @@ export class RestService {
       .catch((error:any) => Observable.throw(error.json().error || 'Server error'));
   }
 
+  patch(url: string, body: any): Observable<any> {
+    return this.http.patch('api/'+url, body,{headers: this.buildHeader()})
+      // .map(response=>response.json())
+      .catch((error:any) => Observable.throw(error.json().error || 'Server error'));
+  }
+
   buildHeader(): Headers {
     return new Headers({'Authorization': 'Bearer ' + this.authenticationService.getToken()});
   }

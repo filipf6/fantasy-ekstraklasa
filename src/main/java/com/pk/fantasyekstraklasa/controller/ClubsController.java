@@ -26,7 +26,7 @@ public class ClubsController {
         return new ResponseEntity<>(savedClub, HttpStatus.OK);
     }
 
-    @RequestMapping(value = "{clubId}/addPlayer/{playerId}", method = RequestMethod.PATCH)
+    @RequestMapping(value = "/{clubId}/addPlayer/{playerId}", method = RequestMethod.PATCH)
     public ResponseEntity<?> addPlayerToTheTeam(@PathVariable Long clubId, @PathVariable Long playerId) {
         //clubsService.addPlayerToTheClub(clubId, playerId);
         return new ResponseEntity<>(HttpStatus.OK);

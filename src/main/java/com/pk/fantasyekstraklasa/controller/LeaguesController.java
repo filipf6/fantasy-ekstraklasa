@@ -28,7 +28,7 @@ public class LeaguesController {
         return new ResponseEntity<>(savedLeague, HttpStatus.OK);
     }
 
-    @RequestMapping(value = "{leagueId}/addTeam/{teamId}", method = RequestMethod.PATCH)
+    @RequestMapping(value = "/{leagueId}/addTeam/{teamId}", method = RequestMethod.PATCH)
     public ResponseEntity<?> addTeamToTheLeague(@PathVariable Long leagueId, @PathVariable Long teamId) {
         leaguesService.addTeamToTheLeague(leagueId, teamId);
         return new ResponseEntity<>(HttpStatus.OK);

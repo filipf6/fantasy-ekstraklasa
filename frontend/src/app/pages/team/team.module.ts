@@ -6,14 +6,13 @@ import {TeamComponent} from './team.component';
 import {routing} from './team.routing';
 import {ThemeModule} from "../../@theme/theme.module";
 import {TeamCreationModalComponent} from "./team-creation-modal/team-creation-modal.component";
-import {PlayerPositionFilterPipe} from "./player-position-filter.pipe";
+import {PlayerPositionFilterPipe} from "./team-pipes/player-position-filter.pipe";
 import {FirstSquadFilterPipe} from "./team-pipes/first-squad-filter.pipe";
-import {DragulaModule} from "ng2-dragula";
+import {PlayerComponent} from "./player/player.component";
 
 
 @NgModule({
   imports: [
-    DragulaModule,
     ThemeModule,
     CommonModule,
     FormsModule,
@@ -23,7 +22,8 @@ import {DragulaModule} from "ng2-dragula";
     TeamComponent,
     TeamCreationModalComponent,
     PlayerPositionFilterPipe,
-    FirstSquadFilterPipe
+    FirstSquadFilterPipe,
+    PlayerComponent
   ],
   entryComponents: [TeamCreationModalComponent],
 })

@@ -3,6 +3,7 @@ import {Observable} from "rxjs/Observable";
 import {RestService} from "../../utils/rest.service";
 import {Team} from "../../models/team.model";
 import {TeamPlayer} from "../../models/team-player.model";
+import {AccuratePosition} from "../../models/enums/accurate-position.enum";
 
 @Injectable()
 export class TeamService {
@@ -22,5 +23,16 @@ export class TeamService {
     return this.restService.post(`teams/saveTeam`, team);
   }
 
-  // addPlayerToFirstSquad(teamPlayerId):
+  addPlayerToFirstSquad(teamPlayerId, accuratePosition: AccuratePosition): Observable<any> {
+    return this.restService.patch(`playerTeams/${teamPlayerId}/addPlayerToFirstSquad`, accuratePosition);
+  }
+
+  removePlayerFromFirstSquad(teamPlayerId): Observable<any> {
+    return this.restService.patch(`playerTeams/${teamPlayerId}/removePlayerFromFirstSquad`, null);
+  }
+
+  substitutePlayers(playerInId, playerOutId): Observable<any> {
+    return this.restService.patch(`playerTeams/${playerInId}/${playerOutId}/substitutePlayers`, null);
+  }
 }
+

@@ -21,32 +21,8 @@
   /*color: #494299;*/
 }
 
-.icons {
-  position: absolute;
-  display: none;
-}
-
-.icon-cross {
-  color: red;
-  top: -5%;
-  left: 90%;
-  font-size: 2vw;
-}
-
-.icon-change {
-  top: 30%;
-  left: 90%;
-  font-size: 1.7vw;
-  color: #484298;
-}
-
-.showIconsOnHover:hover .icons {
-  display: inline;
-}
-
-.showIconsOnHover:hover img {
-  width: 80%;
-  height: 80%;
+i {
+  color: springgreen;
 }
 
 .pitch {
@@ -57,72 +33,9 @@
   padding-bottom: 100%;
 }
 
-.player {
-  position: absolute;
-  width: 14%;
-  /*display:table-cell;*/
-  text-align: center;
-  /*background-size: 25% 25%;*/
+.pointer {
+  cursor: pointer;
 }
 
-.player-goalkeeper {
-  top: 1%;
-  left: 43%;
-}
-
-.player-left-defender {
-  top: 23%;
-  left: 82%;
-}
-
-.player-center1-defender {
-  top: 23%;
-  left: 30%;
-}
-
-.player-center2-defender {
-  top: 23%;
-  left: 56%;
-}
-
-.player-right-defender {
-  top: 23%;
-  left: 4%;
-}
-
-.player-left-defender {
-  top: 23%;
-  left: 82%;
-}
-
-.player-center1-midfielder {
-  top: 48%;
-  left: 30%;
-}
-
-.player-center2-midfielder {
-  top: 48%;
-  left: 56%;
-}
-
-.player-right-midfielder {
-  top: 48%;
-  left: 4%;
-}
-
-.player-left-midfielder {
-  top: 48%;
-  left: 82%;
-}
-
-.player-left-forward {
-  top: 75%;
-  left: 30%;
-}
-
-.player-right-forward {
-  top: 75%;
-  left: 56%;
-}
 
 

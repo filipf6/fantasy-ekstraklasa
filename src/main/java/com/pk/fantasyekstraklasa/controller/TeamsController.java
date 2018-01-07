@@ -30,13 +30,13 @@ public class TeamsController {
         this.usersService = usersService;
     }
 
-    @RequestMapping(value = "{teamId}/addPlayer/{playerId}", method = RequestMethod.PATCH)
+    @RequestMapping(value = "/{teamId}/addPlayer/{playerId}", method = RequestMethod.PATCH)
     public ResponseEntity<?> addPlayerToTheTeam(@PathVariable Long teamId, @PathVariable Long playerId) {
         teamsService.addPlayerToTheTeam(teamId, playerId);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
-    @RequestMapping(value = "{teamId}/players", method = RequestMethod.GET)
+    @RequestMapping(value = "/{teamId}/players", method = RequestMethod.GET)
     public ResponseEntity<?> getPlayers(@PathVariable Long teamId) {
         //teamsService.getPlayersFromTeam(teamId).forEach(x-> System.out.println(x));
         List<PlayerTeam> players = new ArrayList<>(teamsService.getPlayersFromTeam(teamId)); //teamsService.getPlayersFromTeam(teamId)
