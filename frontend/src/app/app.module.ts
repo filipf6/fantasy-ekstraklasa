@@ -26,42 +26,6 @@ import {NgbModule} from "@ng-bootstrap/ng-bootstrap";
     NgbModule.forRoot(),
     CoreModule.forRoot(),
     NbThemeModule.forRoot({name: 'cosmic'}),
-    // NbAuthModule.forRoot({
-    //   providers: {
-    //     email: {
-    //       service: NbEmailPassAuthProvider,
-    //       config: {
-    //         baseEndpoint: 'api',
-    //         login: {
-    //           endpoint: '/auth',
-    //           method: 'post',
-    //         },
-    //         register: {
-    //           endpoint: '/auth/sign-up',
-    //           method: 'post',
-    //         },
-    //         logout: {
-    //           endpoint: '/auth/sign-out',
-    //           method: 'post',
-    //         },
-    //         requestPass: {
-    //           endpoint: '/auth/request-pass',
-    //           method: 'post',
-    //         },
-    //         resetPass: {
-    //           endpoint: '/auth/reset-pass',
-    //           method: 'post',
-    //         },
-    //       },
-    //     },
-    //   },
-    //   forms: {
-    //     login: {
-    //       provider: 'email',
-    //     }
-    //   },
-    // }),
-
   ],
   providers: [{provide: APP_BASE_HREF, useValue: '/'}, AuthenticationService, CanActivateAuthGuard ],
 

@@ -31,8 +31,6 @@ public class User implements Serializable {
     @Column(unique = true, nullable = false)
     private String email;
 
-    //private String username;
-
     @NotBlank
     private String password;
 
@@ -46,7 +44,6 @@ public class User implements Serializable {
     private boolean enabled;
 
     @Temporal(TemporalType.TIMESTAMP)
-    //@Column(nullable = false)
     private Date lastPasswordResetDate;
 
     @NotNull

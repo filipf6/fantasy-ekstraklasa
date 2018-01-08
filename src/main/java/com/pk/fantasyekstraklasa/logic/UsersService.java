@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class UsersService {
+
     private UsersRepository usersRepository;
     private TeamsRepository teamsRepository;
     private BCryptPasswordEncoder bCryptPasswordEncoder;

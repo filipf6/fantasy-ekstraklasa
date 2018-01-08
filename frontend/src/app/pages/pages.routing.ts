@@ -4,6 +4,8 @@ import {TeamComponent} from "./team/team.component";
 import {NgModule} from "@angular/core";
 import {UserComponent} from "./user/user.component";
 import {HomeComponent} from "./home/home.component";
+import {GameplayComponent} from "./gameplay/gameplay.component";
+import {LeaguesComponent} from "./leagues/leagues.component";
 
 const routes: Routes = [{
   path: '',
@@ -20,6 +22,14 @@ const routes: Routes = [{
     {
       path: 'user',
       component: UserComponent,
+    },
+    {
+      path: 'gameplay',
+      component: GameplayComponent,
+    },
+    {
+      path: 'leagues',
+      component: LeaguesComponent,
     },
     {
       path: '',

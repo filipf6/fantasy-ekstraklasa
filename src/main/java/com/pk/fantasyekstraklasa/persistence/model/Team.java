@@ -19,11 +19,6 @@ public class Team {
     @OneToOne(mappedBy = "team")
     private User user;
 
-    //fetch = FetchType.LAZY,
-//    @ManyToMany(mappedBy = "teams")
-//    private Set<Player> players = new HashSet<>(0);
-
-    // , referencedColumnName = "TEAM_ID" \\ , referencedColumnName = "id"
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(name = "team_league", joinColumns = @JoinColumn(name = "team_id"), inverseJoinColumns = @JoinColumn(name = "league_id"))
     private Set<League> leagues = new HashSet<>(0);
@@ -33,10 +28,6 @@ public class Team {
 
     @OneToMany(mappedBy = "team", cascade = CascadeType.ALL)
     private Set<PlayerTeam> teamPlayers = new HashSet<>(0);
-
-//    private Long captainId;
-//
-//    private Long viceCaptainId;
 
     public Team() {
     }
@@ -65,14 +56,6 @@ public class Team {
         this.user = user;
     }
 
-//    public Set<Player> getPlayers() {
-//        return players;
-//    }
-//
-//    public void setPlayers(Set<Player> players) {
-//        this.players = players;
-//    }
-
     public Set<League> getLeagues() {
         return leagues;
     }
@@ -96,22 +79,6 @@ public class Team {
     public void setTeamPlayers(Set<PlayerTeam> teamPlayers) {
         this.teamPlayers = teamPlayers;
     }
-
-    //    public Long getCaptainId() {
-//        return captainId;
-//    }
-//
-//    public void setCaptainId(Long captainId) {
-//        this.captainId = captainId;
-//    }
-//
-//    public Long getViceCaptainId() {
-//        return viceCaptainId;
-//    }
-//
-//    public void setViceCaptainId(Long viceCaptainId) {
-//        this.viceCaptainId = viceCaptainId;
-//    }
 
     @Override
     public String toString() {

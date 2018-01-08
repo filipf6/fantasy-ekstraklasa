@@ -8,13 +8,18 @@ export const MENU_ITEMS: NbMenuItem[] = [
     home: true,
   },
   {
-    title: 'Team',
+    title: 'Zespół',
     icon: 'nb-compose',
     link: '/pages/team',
   },
   {
-    title: 'User',
+    title: 'Ligi',
     icon: 'nb-person',
-    link: '/pages/user',
+    link: '/pages/leagues',
+  },
+  {
+    title: 'Rozgrywka',
+    icon: 'nb-person',
+    link: '/pages/gameplay',
   },
 ];

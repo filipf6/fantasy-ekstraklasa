@@ -43,11 +43,6 @@ public class Player {
     @OneToMany(mappedBy = "player", cascade = CascadeType.ALL)
     private Set<PlayerTeam> playerTeams = new HashSet<>(0);
 
-    // fetch = FetchType.LAZY,
-//    @ManyToMany(cascade = CascadeType.ALL)
-//    @JoinTable(name = "player_team", joinColumns = {@JoinColumn(name = "PLAYER_ID")}, inverseJoinColumns = { @JoinColumn(name="TEAM_ID") })//@JoinColumn(name = "players_id", referencedColumnName = "id"), inverseJoinColumns = @JoinColumn(name = "teams_id", referencedColumnName = "id"))
-//    private Set<Team> teams = new HashSet<>(0);
-
     public Player() {
     }
 

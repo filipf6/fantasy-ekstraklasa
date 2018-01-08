@@ -11,6 +11,8 @@ import {TeamService} from "./team/team.service";
 import {RestService} from "../utils/rest.service";
 import {NbAuthService} from "@nebular/auth";
 import {HomeModule} from "./home/home.module";
+import { GameplayComponent } from './gameplay/gameplay.component';
+import { LeaguesComponent } from './leagues/leagues.component';
 
 const PAGES_COMPONENTS = [
   PagesComponent,
@@ -26,6 +28,8 @@ const PAGES_COMPONENTS = [
   ],
   declarations: [
     ...PAGES_COMPONENTS,
+    GameplayComponent,
+    LeaguesComponent,
   ],
   providers: [NbMenuService, NbSidebarService, NbMenuInternalService, TeamService, RestService, NbAuthService]
 })

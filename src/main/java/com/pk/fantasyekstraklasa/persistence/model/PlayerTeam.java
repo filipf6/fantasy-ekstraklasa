@@ -1,6 +1,5 @@
 package com.pk.fantasyekstraklasa.persistence.model;
 
-
 import com.pk.fantasyekstraklasa.persistence.model.enums.AccuratePosition;
 
 import javax.persistence.*;
@@ -12,12 +11,6 @@ public class PlayerTeam {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-
-//    @OneToOne
-//    private Player player;
-
-//    @OneToOne
-//    private Team team;
 
     @ManyToOne
     @JoinColumn(name = "players_id")
