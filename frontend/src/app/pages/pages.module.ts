@@ -13,6 +13,8 @@ import {NbAuthService} from "@nebular/auth";
 import {HomeModule} from "./home/home.module";
 import { GameplayComponent } from './gameplay/gameplay.component';
 import { LeaguesComponent } from './leagues/leagues.component';
+import {LeagueCreationModelComponent} from "./leagues/league-creation-model/league-creation-model.component";
+import {LeaguesService} from "./leagues/leagues.service";
 
 const PAGES_COMPONENTS = [
   PagesComponent,
@@ -30,8 +32,10 @@ const PAGES_COMPONENTS = [
     ...PAGES_COMPONENTS,
     GameplayComponent,
     LeaguesComponent,
+    LeagueCreationModelComponent
   ],
-  providers: [NbMenuService, NbSidebarService, NbMenuInternalService, TeamService, RestService, NbAuthService]
+  providers: [NbMenuService, NbSidebarService, NbMenuInternalService, TeamService, RestService, NbAuthService, LeaguesService],
+  entryComponents: [LeagueCreationModelComponent],
 })
 export class PagesModule {
 }

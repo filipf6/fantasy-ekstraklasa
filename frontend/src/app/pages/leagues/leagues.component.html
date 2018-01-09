@@ -1,3 +1,16 @@
-<p>
-  leagues works!
-</p>
+<h1>Ligi</h1>
+<button class="btn btn-hero-primary btn-demo" (click)="openLeagueCreationModal()">Załóż ligę</button>
+<button class="btn btn-hero-primary btn-demo" (click)="doNothin()">Dołącz do ligii</button>
+
+<table>
+  <thead>
+  <th>Id</th>
+  <th>Name</th>
+  </thead>
+  <tbody>
+  <tr *ngFor="let league of leagueService.getLeagues() | async">
+    <td>{{league.id}}</td>
+    <td>{{league.name}}</td>
+  </tr>
+  </tbody>
+</table>

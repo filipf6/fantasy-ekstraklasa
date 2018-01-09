@@ -44,36 +44,22 @@ public class AuthenticationController {
     @Autowired
     private UsersService usersService;
 
-    @RequestMapping(value = "/signIn", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<?> createAuthenticationToken(@RequestBody JwtAuthenticationRequest authenticationRequest, Device device) throws AuthenticationException {
-//        try {
-            System.out.println("USERNAME: "+authenticationRequest.getEmail()+"/nPASSWORD: "+authenticationRequest.getPassword());
+    @RequestMapping(value = "/signIn",
+            method = RequestMethod.POST,
+            produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<?> createAuthenticationToken(@RequestBody JwtAuthenticationRequest authenticationRequest,
+                                                       Device device) throws AuthenticationException {
 
-            final Authentication authentication = authenticationManager.authenticate(
+        final Authentication authentication = authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(
                         authenticationRequest.getEmail(),
                         authenticationRequest.getPassword()
                 )
-            );
-            SecurityContextHolder.getContext().setAuthentication(authentication);
-//        } catch(Exception e) {
-//            e.printStackTrace();
-//            System.out.println("ERR");
-//        }
+        );
+        SecurityContextHolder.getContext().setAuthentication(authentication);
 
-
-        // Reload password post-security so we can generate token
-        final UserDetails userDetails = userDetailsService.loadUserByUsername( authenticationRequest.getEmail());
+        final UserDetails userDetails = userDetailsService.loadUserByUsername(authenticationRequest.getEmail());
         final String token = jwtTokenUtil.generateToken(userDetails, device);
-        System.out.println("token: "+token);
-        // Return the token
-//        try{
-//            return new ResponseEntity<Object>(token, HttpStatus.OK);
-//        } catch(Exception e) {
-//            e.printStackTrace();
-//            System.err.println("ERR");
-//            return ResponseEntity.badRequest().body(null);
-//        }
 
         return ResponseEntity.ok(new JwtAuthenticationResponse(token));
     }
@@ -87,17 +73,16 @@ public class AuthenticationController {
 
         if (jwtTokenUtil.canTokenBeRefreshed(token, user.getLastPasswordResetDate())) {
             String refreshedToken = jwtTokenUtil.refreshToken(token);
-            System.out.println("Expiration date: "+jwtTokenUtil.getExpirationDateFromToken(token));
+            System.out.println("Expiration date: " + jwtTokenUtil.getExpirationDateFromToken(token));
             return ResponseEntity.ok(new JwtAuthenticationResponse(refreshedToken));
         } else {
             return ResponseEntity.badRequest().body(null);
         }
     }
 
-    @RequestMapping(value="/signUp", method = RequestMethod.POST,
+    @RequestMapping(value = "/signUp", method = RequestMethod.POST,
             produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> signUp(@RequestBody User user) {
-        System.out.println("jestem w controlerze!!! "+user);
         usersService.saveUser(user);
         return new ResponseEntity<>(HttpStatus.OK);
     }

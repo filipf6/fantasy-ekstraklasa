@@ -1,0 +1,15 @@
+<div class="modal-header">
+  <h5 class="text-success">{{ modalHeader }}</h5>
+  <button class="close" aria-label="Close" (click)="closeModal()">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body">
+  <input [(ngModel)]="leagueName" name="name" type="text" placeholder="Nazwa ligii" class="form-control" required="true" #name="ngModel" [class.form-control-danger]="name.invalid && name.touched"/>
+  <small class="form-text error" *ngIf="name.invalid && name.touched">
+    Wprowadź nazwę ligii!
+  </small>
+</div>
+<div class="modal-footer">
+  <button [disabled]="!name.valid" class="btn btn-hero-primary btn-demo" (click)="createLeague()">Załóż ligę</button>
+</div>

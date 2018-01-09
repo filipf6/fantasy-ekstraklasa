@@ -5,20 +5,15 @@ import com.pk.fantasyekstraklasa.persistence.model.Team;
 import com.pk.fantasyekstraklasa.persistence.model.User;
 import com.pk.fantasyekstraklasa.utils.security.JwtTokenUtil;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import javax.servlet.http.HttpServletRequest;
-
 @RestController
 @RequestMapping("/users")
 public class UsersController {
 
-//    @Value("${jwt.header}")
-//    private String tokenHeader;
     private UsersService usersService;
     private JwtTokenUtil jwtTokenUtil;
 
@@ -31,7 +26,6 @@ public class UsersController {
     @RequestMapping(value = "/saveUser", method = RequestMethod.POST, consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> saveUser(User userToSave) {
-        //User savedUser =
         usersService.saveUser(userToSave);
         return new ResponseEntity<>(HttpStatus.OK);
     }

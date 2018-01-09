@@ -17,7 +17,9 @@ public class UsersService {
     private BCryptPasswordEncoder bCryptPasswordEncoder;
 
     @Autowired
-    public UsersService(UsersRepository usersRepository, TeamsRepository teamsRepository, BCryptPasswordEncoder bCryptPasswordEncoder) {
+    public UsersService(UsersRepository usersRepository,
+                        TeamsRepository teamsRepository,
+                        BCryptPasswordEncoder bCryptPasswordEncoder) {
         this.usersRepository = usersRepository;
         this.teamsRepository = teamsRepository;
         this.bCryptPasswordEncoder = bCryptPasswordEncoder;
@@ -61,9 +63,9 @@ public class UsersService {
     public Team getTeamByEmail(String email) {
         User user = usersRepository.findUserByEmail(email);
 
-        System.out.println("User by email: "+user);
+        System.out.println("User by email: " + user);
         Team team = user.getTeam();
-        System.out.println("team by user: "+team);
+        System.out.println("team by user: " + team);
         return team;
     }
 }

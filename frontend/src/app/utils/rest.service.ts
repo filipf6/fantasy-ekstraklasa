@@ -23,7 +23,6 @@ export class RestService {
 
   patch(url: string, body: any): Observable<any> {
     return this.http.patch('api/'+url, body,{headers: this.buildHeader()})
-      // .map(response=>response.json())
       .catch((error:any) => Observable.throw(error.json().error || 'Server error'));
   }
 
