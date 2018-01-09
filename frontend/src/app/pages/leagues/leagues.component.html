@@ -1,16 +1,26 @@
 <h1>Ligi</h1>
-<button class="btn btn-hero-primary btn-demo" (click)="openLeagueCreationModal()">Załóż ligę</button>
-<button class="btn btn-hero-primary btn-demo" (click)="doNothin()">Dołącz do ligii</button>
+<div class="menu">
+  <div class="dropdown btn-hero-primary" style="width: 200px; display: inline-block" ngbDropdown>
+    <button class="btn btn-primary" type="button" ngbDropdownToggle>
+      Twoje ligi
+    </button>
+    <ul class="dropdown-menu" ngbDropdownMenu>
+      <li class="dropdown-item">Liga Deblin</li>
+      <li class="dropdown-item">Liga mistrzów</li>
+      <li class="dropdown-item">Liga przegranych</li>
+    </ul>
+  </div>
+  <button class="btn btn-hero-primary btn-demo" (click)="openLeagueCreationModal()">Załóż ligę</button>
+</div>
+<div class="league-table">
+  <nb-card>
+    <nb-card-header>
+      Smart Table
+    </nb-card-header>
 
-<table>
-  <thead>
-  <th>Id</th>
-  <th>Name</th>
-  </thead>
-  <tbody>
-  <tr *ngFor="let league of leagueService.getLeagues() | async">
-    <td>{{league.id}}</td>
-    <td>{{league.name}}</td>
-  </tr>
-  </tbody>
-</table>
+    <nb-card-body>
+      <ng2-smart-table [settings]="settings" [source]="source" (deleteConfirm)="onDeleteConfirm($event)">
+      </ng2-smart-table>
+    </nb-card-body>
+  </nb-card>
+</div>

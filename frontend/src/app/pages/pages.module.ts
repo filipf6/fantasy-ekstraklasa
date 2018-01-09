@@ -15,6 +15,7 @@ import { GameplayComponent } from './gameplay/gameplay.component';
 import { LeaguesComponent } from './leagues/leagues.component';
 import {LeagueCreationModelComponent} from "./leagues/league-creation-model/league-creation-model.component";
 import {LeaguesService} from "./leagues/leagues.service";
+import { Ng2SmartTableModule } from 'ng2-smart-table';
 
 const PAGES_COMPONENTS = [
   PagesComponent,
@@ -27,6 +28,7 @@ const PAGES_COMPONENTS = [
     TeamModule,
     UserModule,
     ThemeModule,
+    Ng2SmartTableModule
   ],
   declarations: [
     ...PAGES_COMPONENTS,
