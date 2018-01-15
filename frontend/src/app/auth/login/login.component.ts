@@ -22,12 +22,12 @@ export class LoginComponent implements OnInit {
       .subscribe(result => {
         if(result===true) this.router.navigate(['pages']);
         else {
-          this.error = 'Username or password is incorrect';
+          this.error = 'Nazwa użytkownika lub hasło jest nieprawidłowe';
           this.submitted = false;
         }
       }, error => {
         this.submitted = false;
-        this.error = 'Username or password is incorrect';
+        this.error = 'Nazwa użytkownika lub hasło jest nieprawidłowe';
       })
   }
 

@@ -3,6 +3,7 @@ package com.pk.fantasyekstraklasa.persistence.model;
 import org.hibernate.validator.constraints.NotBlank;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -15,6 +16,9 @@ public class Team {
 
     @NotBlank
     private String name;
+
+    @NotNull
+    private double budget;
 
     @OneToOne(mappedBy = "team")
     private User user;
@@ -46,6 +50,14 @@ public class Team {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public double getBudget() {
+        return budget;
+    }
+
+    public void setBudget(double budget) {
+        this.budget = budget;
     }
 
     public User getUser() {

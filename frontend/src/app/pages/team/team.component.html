@@ -28,14 +28,14 @@
                   <div *ngFor="let teamPlayer of teamPlayers | positionFilter:'GOALKEEPER':false"
                        [class.pointer]="!addIconsHidden[0]"
                        (click)="!addIconsHidden[0] && addPlayerToFirstSquad(teamPlayer.id, tempAccuratePosition)">
-                       <!--(click)="!substitutionIconsHidden[0] && substitutePlayers(teamPlayer.id)">-->
+                    <!--(click)="!substitutionIconsHidden[0] && substitutePlayers(teamPlayer.id)">-->
                     <div>
                       <i [hidden]="addIconsHidden[0]" class="fa fa-plus" aria-hidden="true"></i>
                       <div style="display: inline;">{{teamPlayer.player.name}} {{teamPlayer.player.surname}}</div>
                     </div>
                     <!--<div>-->
-                      <!--<i [hidden]="substitutionIconsHidden[0]" class="fa fa-refresh" aria-hidden="true"></i>-->
-                      <!--<div style="display: inline;">{{teamPlayer.player.name}} {{teamPlayer.player.surname}}</div>-->
+                    <!--<i [hidden]="substitutionIconsHidden[0]" class="fa fa-refresh" aria-hidden="true"></i>-->
+                    <!--<div style="display: inline;">{{teamPlayer.player.name}} {{teamPlayer.player.surname}}</div>-->
                     <!--</div>-->
 
 
@@ -78,12 +78,12 @@
           <ng-template #setUpTeam>
             <div class="container-fluid">
               <div class="row">
-                <div class="col-md-9">
+                <div class="col-md-9" style="margin-top: 2%">
                   <p>Nie masz jeszcze drużyny. Kliknij przycisk aby skompletować zespół i dołączyć do rywalizacji z
                     innymi
                     użytkownikami!</p>
                 </div>
-                <div class="col-md-3 text-right">
+                <div class="col-md-3 text-right" style="margin-top: 1%">
                   <button class="btn btn-hero-primary btn-demo" (click)="openTeamCreationModal()">Załóż drużynę
                   </button>
                 </div>
@@ -92,7 +92,96 @@
           </ng-template>
         </nb-tab>
         <nb-tab tabTitle="Transfery">
-          <span>Content #2</span>
+          <div class="container-fluid">
+            <div class="row">
+              <div class="col-md-6 box">
+                <div class="inner" style="text-align: center">
+                  <p>Twoi zawodnicy</p>
+                </div>
+                <div class="inner">
+                  <b>Bramkarze:</b>
+                  <div *ngFor="let teamPlayer of teamPlayers | positionFilter:'GOALKEEPER':null">
+                    <div class="players-padding showButtonOnHover">
+                      <div style="display: inline;">{{teamPlayer.player.name}} {{teamPlayer.player.surname}}: <span
+                        style="color: springgreen">{{teamPlayer.player.price}}$</span></div>
+                      <button (click)="sellPlayer(teamPlayer)" class="btn btn-hero-danger btn-tn buttons">Sprzedaj</button>
+                    </div>
+                  </div>
+                </div>
+                <div class="inner">
+                  <b>Obrońcy:</b>
+                  <div *ngFor="let teamPlayer of teamPlayers | positionFilter:'DEFENDER':null">
+                    <div class="players-padding showButtonOnHover">
+                    <p style="display: inline;">{{teamPlayer.player.name}} {{teamPlayer.player.surname}}: <span
+                      style="color: springgreen">{{teamPlayer.player.price}}$</span></p>
+                    <button (click)="sellPlayer(teamPlayer)" class="btn btn-hero-danger btn-tn buttons">Sprzedaj</button>
+                    </div>
+                  </div>
+                </div>
+                <div class="inner">
+                  <b>Pomocnicy:</b>
+                  <div *ngFor="let teamPlayer of teamPlayers | positionFilter:'MIDFIELDER':null">
+                    <div class="players-padding showButtonOnHover">
+                    <div style="display: inline;"> {{teamPlayer.player.name}} {{teamPlayer.player.surname}}: <span
+                      style="color: springgreen">{{teamPlayer.player.price}}$</span>
+                      <button (click)="sellPlayer(teamPlayer)" class="btn btn-hero-danger btn-tn buttons">Sprzedaj</button>
+                    </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="inner">
+                  <b>Napastnicy:</b>
+                  <div *ngFor="let teamPlayer of teamPlayers | positionFilter:'FORWARD':null">
+                    <div class="players-padding showButtonOnHover">
+                    <p style="display: inline;">{{teamPlayer.player.name}} {{teamPlayer.player.surname}}: <span
+                      style="color: springgreen">{{teamPlayer.player.price}}$</span></p>
+                    <button (click)="sellPlayer(teamPlayer)" class="btn btn-hero-danger btn-tn buttons">Sprzedaj</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6 box">
+                <div class="inner" style="text-align: center">
+                  <p *ngIf="team">Budżet: <b>{{team.budget}}$</b></p>
+                </div>
+                <div class="inner">
+                    <form (ngSubmit)="searchPlayers()" #form="ngForm">
+                      <div class="input-group">
+                        <input name="searchName" id="input-name" #searchName="ngModel"
+                               class="form-control" placeholder="Jakiego zawodnika szukasz?"
+                               [(ngModel)]="searchValue"
+                               [required]="true" style="margin-bottom:4%;">
+                      </div>
+                      <button [disabled]="!form.valid" class="btn btn-block btn-hero-success"
+                              [class.btn-pulse]="submitted">
+                        Wyszukaj zawodnika
+                      </button>
+                    </form>
+                </div>
+                <div class="inner" *ngIf="searchedPlayers">
+                  <ul *ngFor="let player of searchedPlayers">
+                    <li class="showButtonOnHover">
+                    {{player.name}} {{player.surname}} -
+                    <div style="display: inline" [ngSwitch]="player.position">
+                      <span *ngSwitchCase="'GOALKEEPER'">bramkarz -</span>
+                    </div>
+                    <div style="display: inline" [ngSwitch]="player.position">
+                      <span *ngSwitchCase="'DEFENDER'">obrońca -</span>
+                    </div>
+                    <div style="display: inline" [ngSwitch]="player.position">
+                      <span *ngSwitchCase="'MIDFIELDER'">pomocnik -</span>
+                    </div>
+                    <div style="display: inline" [ngSwitch]="player.position">
+                      <span *ngSwitchCase="'FORWARD'">napastnik -</span>
+                    </div>
+                    <span style="color:springgreen">{{player.price}}$</span>
+                      <button (click)="buyPlayer(player)" class="btn btn-hero-success btn-tn buttons">Kup</button>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
         </nb-tab>
       </nb-tabset>
     </nb-card>

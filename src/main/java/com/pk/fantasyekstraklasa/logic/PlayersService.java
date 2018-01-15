@@ -19,4 +19,8 @@ public class PlayersService {
     public Player addPlayer(Player player) {
         return playersRepository.save(player);
     }
+
+    public List<Player> searchPlayers(String searchValue) {
+        return playersRepository.findByNameIgnoreCaseContainingOrSurnameIgnoreCaseContaining(searchValue, searchValue);
+    }
 }

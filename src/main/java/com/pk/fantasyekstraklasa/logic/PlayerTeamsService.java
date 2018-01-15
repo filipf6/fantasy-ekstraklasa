@@ -1,20 +1,26 @@
 package com.pk.fantasyekstraklasa.logic;
 
 import com.pk.fantasyekstraklasa.persistence.model.PlayerTeam;
+import com.pk.fantasyekstraklasa.persistence.model.Team;
 import com.pk.fantasyekstraklasa.persistence.model.enums.AccuratePosition;
 import com.pk.fantasyekstraklasa.persistence.repository.PlayerTeamRepository;
+import com.pk.fantasyekstraklasa.persistence.repository.TeamsRepository;
 import com.pk.fantasyekstraklasa.utils.errorHandling.customExceptions.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.Set;
 
 @Service
 public class PlayerTeamsService {
 
     private PlayerTeamRepository playerTeamRepository;
+    private TeamsRepository teamsRepository;
 
     @Autowired
-    public PlayerTeamsService(PlayerTeamRepository playerTeamRepository) {
+    public PlayerTeamsService(PlayerTeamRepository playerTeamRepository, TeamsRepository teamsRepository) {
         this.playerTeamRepository = playerTeamRepository;
+        this.teamsRepository = teamsRepository;
     }
 
     public void removePlayerFromFirstSquad(Long playerTeamId) {
@@ -35,6 +41,18 @@ public class PlayerTeamsService {
 
     public void substitutePlayers(Long playerInId, Long playerOutId) {
 
+    }
+
+    public Set<PlayerTeam> removePlayerFromTeam(Long playerTeamId) {
+        PlayerTeam playerTeam = playerTeamRepository.findOne(playerTeamId);
+        playerTeamRepository.delete(playerTeamId);
+        Team team = teamsRepository.findOne(playerTeam.getTeam().getId());
+        if (team == null) throw new NotFoundException();
+        Set<PlayerTeam> teamsPlayers = team.getTeamPlayers();
+        if(teamsPlayers == null) {
+            throw new NotFoundException();
+        }
+        return teamsPlayers;
     }
 
 

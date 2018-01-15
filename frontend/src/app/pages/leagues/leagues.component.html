@@ -1,26 +1,40 @@
-<h1>Ligi</h1>
-<div class="menu">
-  <div class="dropdown btn-hero-primary" style="width: 200px; display: inline-block" ngbDropdown>
-    <button class="btn btn-primary" type="button" ngbDropdownToggle>
-      Twoje ligi
-    </button>
-    <ul class="dropdown-menu" ngbDropdownMenu>
-      <li class="dropdown-item">Liga Deblin</li>
-      <li class="dropdown-item">Liga mistrzów</li>
-      <li class="dropdown-item">Liga przegranych</li>
-    </ul>
-  </div>
-  <button class="btn btn-hero-primary btn-demo" (click)="openLeagueCreationModal()">Załóż ligę</button>
-</div>
+
 <div class="league-table">
   <nb-card>
     <nb-card-header>
-      Smart Table
-    </nb-card-header>
+      <div class="row">
+        <div class="col-md-9">
+        <div class="dropdown" style="width: 200px; display: inline-block" ngbDropdown>
+          <button class="btn btn-primary" type="button" ngbDropdownToggle>
+            <div *ngIf="selectedLeague; else default">{{selectedLeague}}</div>
+            <ng-template #default>
+              Twoje Ligi
+            </ng-template>
+          </button>
+          <ul class="dropdown-menu" ngbDropdownMenu>
+            <li *ngFor="let leagueName of leagueNames" class="dropdown-item" (click)="selectedLeague=leagueName">
+              {{leagueName}}
+            </li>
+          </ul>
+        </div>
+      </div>
+      <button class="btn btn-hero-primary btn-demo col-md-3" (click)="openLeagueCreationModal()">Załóż ligę</button>
+</div>
+</nb-card-header>
 
-    <nb-card-body>
-      <ng2-smart-table [settings]="settings" [source]="source" (deleteConfirm)="onDeleteConfirm($event)">
+<nb-card-body>
+  <div *ngIf="selectedLeague">
+    <div [ngSwitch]="selectedLeague">
+      <ng2-smart-table *ngSwitchCase="'liga PK'" [settings]="settings" [source]="source1" (deleteConfirm)="onDeleteConfirm($event)">
       </ng2-smart-table>
-    </nb-card-body>
-  </nb-card>
+      <ng2-smart-table *ngSwitchCase="'ekstraliga'" [settings]="settings" [source]="source2" (deleteConfirm)="onDeleteConfirm($event)">
+      </ng2-smart-table>
+      <ng2-smart-table *ngSwitchCase="'liga deblin'" [settings]="settings" [source]="source3" (deleteConfirm)="onDeleteConfirm($event)">
+      </ng2-smart-table>
+      <ng2-smart-table *ngSwitchDefault [settings]="settings" [source]="source4"></ng2-smart-table>
+    </div>
+
+  </div>
+</nb-card-body>
+</nb-card>
 </div>

@@ -30,12 +30,16 @@ public class TeamsService {
         this.playerTeamRepository = playerTeamRepository;
     }
 
-    public void addPlayerToTheTeam(Long teamId, Long playerId) {
+    public Set<PlayerTeam> addPlayerToTheTeam(Long teamId, Long playerId) {
         Player player = playersRepository.findOne(playerId);
         Team team = teamsRepository.findOne(teamId);
 
         if (player == null || team == null) throw new NotFoundException();
-
+        double price1 = team.getBudget()*10;
+        double price2 = player.getPrice()*10;
+        double newBudget = price1 - price2;
+        newBudget/=10;
+        team.setBudget(newBudget);
         PlayerTeam playerTeam = new PlayerTeam(player,team,false,false,false,null);
         Transfer transfer = new Transfer();
         transfer.setTransferType(TransferType.IN);
@@ -43,7 +47,7 @@ public class TeamsService {
         transfer.setTeam(team);
         transfersRepository.saveAndFlush(transfer);
         playerTeamRepository.saveAndFlush(playerTeam);
-//
+        return team.getTeamPlayers();
 //        Set<Team> teams = player.getTeams();
 //        teams.add(team);
 //        player.setTeams(teams);

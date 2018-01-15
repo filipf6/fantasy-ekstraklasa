@@ -26,6 +26,12 @@ export class RestService {
       .catch((error:any) => Observable.throw(error.json().error || 'Server error'));
   }
 
+  delete(url: string): Observable<any> {
+    return this.http.delete('api/'+url,{headers: this.buildHeader()})
+      .map(response=>response.json())
+      .catch((error:any) => Observable.throw(error.json().error || 'Server error'));
+  }
+
   buildHeader(): Headers {
     return new Headers({'Authorization': 'Bearer ' + this.authenticationService.getToken()});
   }

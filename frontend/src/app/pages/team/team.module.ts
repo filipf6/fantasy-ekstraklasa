@@ -9,6 +9,8 @@ import {TeamCreationModalComponent} from "./team-creation-modal/team-creation-mo
 import {PlayerPositionFilterPipe} from "./team-pipes/player-position-filter.pipe";
 import {FirstSquadFilterPipe} from "./team-pipes/first-squad-filter.pipe";
 import {PlayerComponent} from "./player/player.component";
+import {AlreadyInSquadModalComponent} from "./buy-player-failure-modals/already-in-squad-modal.component";
+import {TooLowBudgetModalComponent} from "./buy-player-failure-modals/too-low-budget-modal.component";
 
 
 @NgModule({
@@ -23,9 +25,11 @@ import {PlayerComponent} from "./player/player.component";
     TeamCreationModalComponent,
     PlayerPositionFilterPipe,
     FirstSquadFilterPipe,
-    PlayerComponent
+    PlayerComponent,
+    AlreadyInSquadModalComponent,
+    TooLowBudgetModalComponent
   ],
-  entryComponents: [TeamCreationModalComponent],
+  entryComponents: [TeamCreationModalComponent, AlreadyInSquadModalComponent, TooLowBudgetModalComponent],
 })
 export class TeamModule {
 }

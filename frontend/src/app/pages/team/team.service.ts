@@ -34,5 +34,17 @@ export class TeamService {
   substitutePlayers(playerInId, playerOutId): Observable<any> {
     return this.restService.patch(`playerTeams/${playerInId}/${playerOutId}/substitutePlayers`, null);
   }
+
+  searchPlayers(searchValue): Observable<any> {
+    return this.restService.get(`players?searchValue=`+searchValue);
+  }
+
+  sellPlayer(teamPlayerId): Observable<any> {
+    return this.restService.delete(`playerTeams/${teamPlayerId}/delete`);
+  }
+
+  buyPlayer(teamId, playerId): Observable<TeamPlayer[]> {
+    return this.restService.patch(`teams/${teamId}/addPlayer/${playerId}`,null).map(response => response.json());
+  }
 }
 

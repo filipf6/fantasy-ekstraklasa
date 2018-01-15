@@ -29,7 +29,7 @@ export class RegisterComponent {
         this.modalService.open(SuccessModalComponent, {size: 'sm', container: 'nb-layout'});
       }, error => {
         this.submitted = false;
-        this.error = "User with this email already exists";
+        this.error = "Użytkownik o podanym adresie e-mail już istnieje";
       })
   }
 

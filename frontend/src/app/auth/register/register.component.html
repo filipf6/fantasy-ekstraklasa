@@ -1,9 +1,9 @@
 <!--<nb-auth-block>-->
-  <h2 class="title">Sign Up</h2>
+  <h2 class="title">Zarejestruj się</h2>
   <form (ngSubmit)="register()" #form="ngForm">
     <div *ngIf="error && !submitted"
          class="alert alert-danger" role="alert">
-      <div><strong>Oh snap!</strong></div>
+      <!--<div><strong>Ojej!</strong></div>-->
       <div>{{ error }}</div>
     </div>
     <!--<div *ngIf="showMessages.error && errors && errors.length > 0 && !submitted"-->
@@ -17,94 +17,85 @@
       <!--<div *ngFor="let message of messages">{{ message }}</div>-->
     <!--</div>-->
     <div class="form-group">
-      <label for="input-name" class="sr-only">Name</label>
+      <label for="input-name" class="sr-only">Imię</label>
       <input name="name" [(ngModel)]="user.name" id="input-name" #name="ngModel"
-             class="form-control" placeholder="Name"
+             class="form-control" placeholder="Imię"
              [class.form-control-danger]="name.invalid && name.touched"
              [required]="true"
              [minlength]="3"
              [maxlength]="30">
       <small class="form-text error" *ngIf="name.invalid && name.touched && name.errors?.required">
-        Name is required!
+        Imię jest wymagane!
       </small>
       <small
         class="form-text error"
         *ngIf="name.invalid && name.touched && (name.errors?.minlength || name.errors?.maxlength)">
-        Name should contains
-        from 3
-        to 30
-        characters
+        Imię powinno zawierać od 3 do 30 liter!
       </small>
     </div>
     <div class="form-group">
-      <label for="input-surname" class="sr-only">Surname</label>
+      <label for="input-surname" class="sr-only">Nazwisko</label>
       <input name="surname" [(ngModel)]="user.surname" id="input-surname" #surname="ngModel"
-             class="form-control" placeholder="Surname"
+             class="form-control" placeholder="Nazwisko"
              [class.form-control-danger]="surname.invalid && surname.touched"
              [required]="true"
              [minlength]="3"
              [maxlength]="30">
       <small class="form-text error" *ngIf="surname.invalid && surname.touched && surname.errors?.required">
-        Surname is required!
+        Nazwisko jest wymagane!
       </small>
       <small
         class="form-text error"
         *ngIf="surname.invalid && surname.touched && (surname.errors?.minlength || surname.errors?.maxlength)">
-        Surname should contains
-        from 3
-        to 30
-        characters
+        Nazwisko powinno zawierać od 3 do 30 liter!
       </small>
     </div>
     <div class="form-group">
-      <label for="input-email" class="sr-only">Email address</label>
+      <label for="input-email" class="sr-only">Adres email</label>
       <input name="email" [(ngModel)]="user.email" id="input-email" #email="ngModel"
-             class="form-control" placeholder="Email address" pattern=".+@.+\..+"
+             class="form-control" placeholder="Adres email" pattern=".+@.+\..+"
              [class.form-control-danger]="email.invalid && email.touched"
              [required]="true">
       <small class="form-text error" *ngIf="email.invalid && email.touched && email.errors?.required">
-        Email is required!
+        Adres email jest wymagany!
       </small>
       <small class="form-text error"
              *ngIf="email.invalid && email.touched && email.errors?.pattern">
-        Email should be the real one!
+        Email musi być prawidłowy!
       </small>
     </div>
     <div class="form-group">
-      <label for="input-password" class="sr-only">Password</label>
+      <label for="input-password" class="sr-only">Hasło</label>
       <input name="password" [(ngModel)]="user.password" type="password" id="input-password"
-             class="form-control" placeholder="Password" #password="ngModel"
+             class="form-control" placeholder="Hasło" #password="ngModel"
              [class.form-control-danger]="password.invalid && password.touched"
              [required]="true"
              [minlength]="6"
              [maxlength]="30">
       <small class="form-text error" *ngIf="password.invalid && password.touched && password.errors?.required">
-        Password is required!
+        Hasło jest wymagane!
       </small>
       <small
         class="form-text error"
         *ngIf="password.invalid && password.touched && (password.errors?.minlength || password.errors?.maxlength)">
-        Password should contains
-        from 6
-        to 30
-        characters
+        Hasło musi zawierać od 6 do 30 znaków!
       </small>
     </div>
     <div class="form-group">
-      <label for="input-re-password" class="sr-only">Repeat password</label>
+      <label for="input-re-password" class="sr-only">Powtórz hasło</label>
       <input
         name="rePass" [(ngModel)]="user.confirmPassword" type="password" id="input-re-password"
-        class="form-control" placeholder="Confirm Password" #rePass="ngModel"
+        class="form-control" placeholder="Potwierdź hasło" #rePass="ngModel"
         [class.form-control-danger]="(rePass.invalid || password.value != rePass.value) && rePass.touched"
         [required]="true">
       <small class="form-text error"
              *ngIf="rePass.invalid && rePass.touched && rePass.errors?.required">
-        Password confirmation is required!
+        Powtórzenie hasła jest wymagane!
       </small>
       <small
         class="form-text error"
         *ngIf="rePass.touched && password.value != rePass.value && !rePass.errors?.required">
-        Password does not match the confirm password.
+        Wprowadzone hasła nie zgadzają się!
       </small>
     </div>
     <!--<div class="form-group accept-group col-sm-12" *ngIf="getConfigValue('forms.register.terms')">-->
@@ -114,12 +105,12 @@
     <!--</div>-->
     <button [disabled]="submitted || !form.valid || password.value != rePass.value" class="btn btn-block btn-hero-success"
             [class.btn-pulse]="submitted">
-      Register
+      Zarejestruj się
     </button>
   </form>
   <div style="margin-top:2%;" class="links">
     <small class="form-text">
-      Already have an account? <a routerLink="../login"><strong>Sign in</strong></a>
+      Masz już konto? <a routerLink="../login"><strong>Zaloguj się</strong></a>
     </small>
   </div>
 <!--</nb-auth-block>-->

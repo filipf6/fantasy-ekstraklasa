@@ -37,5 +37,18 @@ i {
   cursor: pointer;
 }
 
+.buttons {
+  display: none;
+}
+
+.showButtonOnHover:hover .buttons {
+  display: inline;
+  cursor: pointer;
+}
+
+.players-padding {
+  padding: 1% 1% 1% 1%;
+}
+
 
 

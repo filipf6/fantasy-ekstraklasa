@@ -8,7 +8,10 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/players")
@@ -25,5 +28,14 @@ public class PlayersController {
     public ResponseEntity<?> addPlayer(Player player) {
         Player savedPlayer = playersService.addPlayer(player);
         return new ResponseEntity<>(savedPlayer, HttpStatus.OK);
+    }
+
+    @RequestMapping(value="", method = RequestMethod.GET)
+    public ResponseEntity<?> searchPlayers(@RequestParam("searchValue") String searchValue) {
+        System.out.println("searchValue: "+searchValue);
+        List<Player> players = playersService.searchPlayers(searchValue);
+        return players.isEmpty() ?
+                new ResponseEntity<>(HttpStatus.NO_CONTENT) :
+                new ResponseEntity<>(players, HttpStatus.OK);
     }
 }

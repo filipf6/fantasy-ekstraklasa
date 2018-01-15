@@ -1,3 +1,230 @@
-<p>
-  gameplay works!
-</p>
+<nb-card>
+  <nb-card-header>Rozgrywka</nb-card-header>
+
+  <nb-card-body style="text-align:center">
+
+
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-12 box">
+          <div class="row icon-buttons" style="width: 100%">
+            <button [disabled]="gameweekNumber===1" type="button" class="btn btn-success btn-icon" (click)="gameweekNumber=gameweekNumber-1">
+              <i class="nb-skip-backward-outline"></i>
+            </button>
+            <label style="position: relative; top:12px; left:10px; right:15px">Kolejka nr {{gameweekNumber}}</label>
+            <button [disabled]="gameweekNumber===3" type="button" class="btn btn-success btn-icon" style="margin-left:22px" (click)="gameweekNumber=gameweekNumber+1">
+              <i class="nb-skip-forward-outline"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-8 box">
+          <div class="pitch">
+            <div class="player" class="player player-goalkeeper">
+              <div>
+                <img src="assets/images/shirt.png" width="50%">
+                <div *ngIf="gameweekNumber===1" class="text">Marian Kelemen
+                  <div class="rating">6</div>
+                </div>
+                <div *ngIf="gameweekNumber===2" class="text">Marian Kelemen
+                  <div class="rating">3</div>
+                </div>
+                <div *ngIf="gameweekNumber===3" class="text">Arkadiusz Malarz
+                  <div class="rating">15</div>
+                </div>
+              </div>
+            </div>
+            <div class="player" class="player player-right-defender">
+              <div>
+                <img src="assets/images/shirt.png" width="50%">
+                <div *ngIf="gameweekNumber===1" class="text">Wojciech Golla
+                  <div class="rating">8</div>
+                </div>
+                <div *ngIf="gameweekNumber===2" class="text">Marcin Wasilewski
+                  <div class="rating">6</div>
+                </div>
+                <div *ngIf="gameweekNumber===3" class="text">Marcin Wasilewski
+                  <div class="rating">10</div>
+                </div>
+              </div>
+            </div>
+            <div class="player" class="player player-center-right-defender">
+              <div>
+                <img src="assets/images/shirt.png" width="50%">
+                <div *ngIf="gameweekNumber===1" class="text">Michał Pazdan
+                  <div class="rating">8</div>
+                </div>
+                <div *ngIf="gameweekNumber===2" class="text">Michał Pazdan
+                  <div class="rating">6</div>
+                </div>
+                <div *ngIf="gameweekNumber===3" class="text">Michał Pazdan
+                  <div class="rating">10</div>
+                </div>
+              </div>
+            </div>
+            <div class="player" class="player player-center-left-defender">
+              <div>
+                <img src="assets/images/shirt.png" width="50%">
+                <div *ngIf="gameweekNumber===1" class="text">Arkadiusz Głowacki
+                  <div class="rating">2</div>
+                </div>
+                <div *ngIf="gameweekNumber===2" class="text">Arkadiusz Głowacki
+                  <div class="rating">10</div>
+                </div>
+                <div *ngIf="gameweekNumber===3" class="text">Arkadiusz Głowacki
+                  <div class="rating">3</div>
+                </div>
+              </div>
+            </div>
+            <div class="player" class="player player-left-defender">
+              <div>
+                <img src="assets/images/shirt.png" width="50%">
+                <div *ngIf="gameweekNumber===1" class="text">Mariusz Pawelec
+                  <div class="rating">4</div>
+                </div>
+                <div *ngIf="gameweekNumber===2" class="text">Mariusz Pawelec
+                  <div class="rating">2</div>
+                </div>
+                <div *ngIf="gameweekNumber===3" class="text">Artur Wawrzyniak
+                  <div class="rating">5</div>
+                </div>
+              </div>
+            </div>
+            <div class="player" class="player player-right-midfielder">
+              <div>
+                <img src="assets/images/shirt.png" width="50%">
+                <div *ngIf="gameweekNumber===1" class="text">Mateusz Cetnarski
+                  <div class="rating">4</div>
+                </div>
+                <div *ngIf="gameweekNumber===2" class="text">Mateusz Cetnarski
+                  <div class="rating">7</div>
+                </div>
+                <div *ngIf="gameweekNumber===3" class="text">Mateusz Cetnarski
+                  <div class="rating">5</div>
+                </div>
+              </div>
+            </div>
+            <div class="player" class="player player-center-right-midfielder">
+              <div>
+                <img src="assets/images/shirt.png" width="50%">
+                <div *ngIf="gameweekNumber===1" class="text">Petar Brlek
+                  <div class="rating">2</div>
+                </div>
+                <div *ngIf="gameweekNumber===2" class="text">Mateusz Matras
+                  <div class="rating">5</div>
+                </div>
+                <div *ngIf="gameweekNumber===3" class="text">Darko Jevtic
+                  <div class="rating">4</div>
+                </div>
+              </div>
+            </div>
+            <div class="player" class="player player-center-left-midfielder">
+              <div>
+                <img src="assets/images/shirt.png" width="50%">
+                <div *ngIf="gameweekNumber===1" class="text">Krzysztof Mączyński
+                  <div class="rating">9</div>
+                </div>
+                <div *ngIf="gameweekNumber===2" class="text">Krzysztof Mączyński
+                  <div class="rating">5</div>
+                </div>
+                <div *ngIf="gameweekNumber===3" class="text">Krzysztof Mączyński
+                  <div class="rating">9</div>
+                </div>
+              </div>
+            </div>
+            <div class="player" class="player player-left-midfielder">
+              <div>
+                <img src="assets/images/shirt.png" width="50%">
+                <div *ngIf="gameweekNumber===1" class="text">Darko Jevtic
+                  <div class="rating">12</div>
+                </div>
+                <div *ngIf="gameweekNumber===2" class="text">Petar Brlek
+                  <div class="rating">3</div>
+                </div>
+                <div *ngIf="gameweekNumber===3" class="text">Mateusz Matras
+                  <div class="rating">8</div>
+                </div>
+              </div>
+            </div>
+            <div class="player" class="player player-right-forward">
+              <div>
+                <img src="assets/images/shirt.png" width="50%">
+                <div *ngIf="gameweekNumber===1" class="text">Marco Paixao
+                  <div class="rating">7</div>
+                </div>
+                <div *ngIf="gameweekNumber===2" class="text">Marco Paixao
+                  <div class="rating">3</div>
+                </div>
+                <div *ngIf="gameweekNumber===3" class="text">Marco Paixao
+                  <div class="rating">18</div>
+                </div>
+              </div>
+            </div>
+            <div class="player" class="player player-left-forward">
+              <div>
+                <img src="assets/images/shirt.png" width="50%">
+                <div *ngIf="gameweekNumber===1" class="text">Paweł Brożek
+                  <div class="rating">8</div>
+                </div>
+                <div *ngIf="gameweekNumber===2" class="text">Paweł Brożek
+                  <div class="rating">12</div>
+                </div>
+                <div *ngIf="gameweekNumber===3" class="text">Paweł Brożek
+                  <div class="rating">4</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div *ngIf="gameweekNumber===1" class="col-md-4 box">
+          <div class="inner" style="text-align: center">
+            <p>Suma punktów</p>
+            <p><b>70</b></p>
+          </div>
+          <div class="inner" style="text-align: center">
+            <p>Najlepszy zawodnik</p>
+            <p><b>Darko Jevtic</b></p>
+            <p><b>12 pkt</b></p>
+          </div>
+          <div class="inner" style="text-align: center">
+            <p>Srednia punktow</p>
+            <p><b>6.4</b></p>
+          </div>
+        </div>
+        <div *ngIf="gameweekNumber===2" class="col-md-4 box">
+          <div class="inner" style="text-align: center">
+            <p>Suma punktów</p>
+            <p><b>62</b></p>
+          </div>
+          <div class="inner" style="text-align: center">
+            <p>Najlepszy zawodnik</p>
+            <p><b>Paweł Brożek</b></p>
+            <p><b>12 pkt</b></p>
+          </div>
+          <div class="inner" style="text-align: center">
+            <p>Srednia punktow</p>
+            <p><b>5.6</b></p>
+          </div>
+        </div>
+        <div *ngIf="gameweekNumber===3" class="col-md-4 box">
+          <div class="inner" style="text-align: center">
+            <p>Suma punktów</p>
+            <p><b>91</b></p>
+          </div>
+          <div class="inner" style="text-align: center">
+            <p>Najlepszy zawodnik</p>
+            <p><b>Marco Paixao</b></p>
+            <p><b>18 pkt</b></p>
+          </div>
+          <div class="inner" style="text-align: center">
+            <p>Srednia punktow</p>
+            <p><b>8.3</b></p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </nb-card-body>
+</nb-card>
+

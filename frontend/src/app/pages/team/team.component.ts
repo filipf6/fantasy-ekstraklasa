@@ -6,6 +6,9 @@ import {TeamCreationModalComponent} from "./team-creation-modal/team-creation-mo
 import {TeamPlayer} from "../../models/team-player.model";
 import {accuratePositions} from "../../models/global";
 import {AccuratePosition} from "../../models/enums/accurate-position.enum";
+import {Player} from "../../models/player.model";
+import {AlreadyInSquadModalComponent} from "./buy-player-failure-modals/already-in-squad-modal.component";
+import {TooLowBudgetModalComponent} from "./buy-player-failure-modals/too-low-budget-modal.component";
 
 @Component({
   selector: 'team-component',
@@ -20,6 +23,8 @@ export class TeamComponent {
   substitutionIconsHidden: boolean[] = [true, true, true, true];
   tempAccuratePosition: AccuratePosition;
   tempPlayerOut: TeamPlayer;
+  searchValue: string;
+  searchedPlayers: Player[];
 
   constructor(private teamService: TeamService, private modalService: NgbModal) {
     this.getTeam();
@@ -135,14 +140,20 @@ export class TeamComponent {
     for (let i = 0; i < 4; i++) {
       this.addIconsHidden[i] = true;
     }
-    this.addIconsHidden.forEach(hidden => console.log(hidden));
+    // this.addIconsHidden.forEach(hidden => console.log(hidden));
     this.teamService.getPlayers(teamId).subscribe(data => {
       this.teamPlayers = data;
       for (let i = 0; i < 11; i++) {
         this.firstSquadPlayers[i] = this.teamPlayers.find(player => player.firstSquad && player.accuratePosition === accuratePositions[i]);
       }
-      this.firstSquadPlayers.forEach(p => console.log(p));
-    }, error => console.log('getPlayers error'));
+      // this.firstSquadPlayers.forEach(p => console.log(p));
+    }, error => {
+      this.teamPlayers = [];
+      for (let i = 0; i < 11; i++) {
+        this.firstSquadPlayers[i] = this.teamPlayers.find(player => player.firstSquad && player.accuratePosition === accuratePositions[i]);
+      }
+      console.log('getPlayers error');
+    });
   }
 
   openTeamCreationModal() {
@@ -155,5 +166,67 @@ export class TeamComponent {
       .catch();
   }
 
+  searchPlayers() {
+    this.teamService.searchPlayers(this.searchValue)
+      .subscribe(players => {
+        this.searchedPlayers = players;
+        console.log(this.searchedPlayers);
+      }, error => console.log('searchPlayers error')
+      );
+  }
 
+  buyPlayer(player: Player) {
+    if(this.teamPlayers.find(teamPlayer=>teamPlayer.player.id===player.id)){
+      this.modalService.open(AlreadyInSquadModalComponent, {size: 'sm', container: 'nb-layout'});
+      return;
+    }
+    if(this.team.budget < player.price) {
+      this.modalService.open(TooLowBudgetModalComponent,{size: 'sm', container: 'nb-layout'});
+      return;
+    }
+    for (let i = 0; i < 4; i++) {
+      this.addIconsHidden[i] = true;
+    }
+    this.teamService.buyPlayer(this.team.id, player.id).subscribe(data =>
+    {
+      console.log(data);
+      this.teamPlayers = data;
+      console.log(this.teamPlayers);
+      //this.team.budget = this.team.budget - player.price;
+      this.teamService.getTeam().subscribe(data => {
+        this.team = data;
+        // if (this.team) this.getPlayers(this.team.id);
+      }, error => console.log('getTeam error: '+error));
+      for (let i = 0; i < 11; i++) {
+        this.firstSquadPlayers[i] = this.teamPlayers.find(player => player.firstSquad && player.accuratePosition === accuratePositions[i]);
+      }
+    },error => {
+      this.teamPlayers = [];
+      for (let i = 0; i < 11; i++) {
+        this.firstSquadPlayers[i] = this.teamPlayers.find(player => player.firstSquad && player.accuratePosition === accuratePositions[i]);
+      }
+      console.log('getPlayers error');
+    })
+  }
+
+  sellPlayer(teamPlayer: TeamPlayer) {
+    for (let i = 0; i < 4; i++) {
+      this.addIconsHidden[i] = true;
+    }
+    this.teamService.sellPlayer(teamPlayer.id).subscribe(data =>
+    {
+      this.teamPlayers = data;
+      this.team.budget = this.team.budget + teamPlayer.player.price;
+      this.teamService.setTeam(this.team).subscribe(data => this.team=data);
+      for (let i = 0; i < 11; i++) {
+        this.firstSquadPlayers[i] = this.teamPlayers.find(player => player.firstSquad && player.accuratePosition === accuratePositions[i]);
+      }
+    },error => {
+      this.teamPlayers = [];
+      for (let i = 0; i < 11; i++) {
+        this.firstSquadPlayers[i] = this.teamPlayers.find(player => player.firstSquad && player.accuratePosition === accuratePositions[i]);
+      }
+      console.log('getPlayers error');
+    })
+  }
 }

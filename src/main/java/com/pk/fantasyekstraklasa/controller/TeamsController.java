@@ -32,8 +32,10 @@ public class TeamsController {
 
     @RequestMapping(value = "/{teamId}/addPlayer/{playerId}", method = RequestMethod.PATCH)
     public ResponseEntity<?> addPlayerToTheTeam(@PathVariable Long teamId, @PathVariable Long playerId) {
-        teamsService.addPlayerToTheTeam(teamId, playerId);
-        return new ResponseEntity<>(HttpStatus.OK);
+        List<PlayerTeam> players = new ArrayList<>(teamsService.addPlayerToTheTeam(teamId, playerId));
+        return players.isEmpty() ?
+                new ResponseEntity<>(HttpStatus.NO_CONTENT) :
+                new ResponseEntity<>(players, HttpStatus.OK);
     }
 
     @RequestMapping(value = "/{teamId}/players", method = RequestMethod.GET)

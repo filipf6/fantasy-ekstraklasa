@@ -46,8 +46,8 @@ public class User implements Serializable {
     @Temporal(TemporalType.TIMESTAMP)
     private Date lastPasswordResetDate;
 
-    @NotNull
-    private int budget;
+//    @NotNull
+//    private double budget;
 
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
@@ -144,13 +144,13 @@ public class User implements Serializable {
         this.lastPasswordResetDate = lastPasswordResetDate;
     }
 
-    public int getBudget() {
-        return budget;
-    }
-
-    public void setBudget(int budget) {
-        this.budget = budget;
-    }
+//    public double getBudget() {
+//        return budget;
+//    }
+//
+//    public void setBudget(double budget) {
+//        this.budget = budget;
+//    }
 
     @Override
     public String toString() {

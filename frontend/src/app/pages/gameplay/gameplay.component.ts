@@ -7,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class GameplayComponent implements OnInit {
 
+  gameweekNumber: number=1;
+
   constructor() { }
 
   ngOnInit() {

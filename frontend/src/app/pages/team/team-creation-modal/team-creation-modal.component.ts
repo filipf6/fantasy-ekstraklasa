@@ -1,7 +1,6 @@
 import {Component} from "@angular/core";
 import {NgbActiveModal} from "@ng-bootstrap/ng-bootstrap";
 import {TeamService} from "../team.service";
-import {Team} from "../../../models/team.model";
 
 @Component({
   selector: 'success-modal',

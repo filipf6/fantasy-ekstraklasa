@@ -1,11 +1,15 @@
 package com.pk.fantasyekstraklasa.controller;
 
 import com.pk.fantasyekstraklasa.logic.PlayerTeamsService;
+import com.pk.fantasyekstraklasa.persistence.model.PlayerTeam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @RestController
 @RequestMapping("/playerTeams")
@@ -33,5 +37,14 @@ public class PlayerTeamsController {
     @RequestMapping(value = "/{playerInId}/{playerOutId}/substitutePlayers", method = RequestMethod.PATCH)
     public ResponseEntity<?> substitutePlayers(@PathVariable Long playerInId, @PathVariable Long playerOutId) {
         return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    @RequestMapping(value = "/{playerTeamId}/delete", method = RequestMethod.DELETE)
+    public ResponseEntity<?> removePlayerFromTeam(@PathVariable Long playerTeamId) {
+        System.out.println("playerTeamId: "+playerTeamId);
+        List<PlayerTeam> players = new ArrayList<>(playerTeamsService.removePlayerFromTeam(playerTeamId));
+        return players.isEmpty() ?
+                new ResponseEntity<>(HttpStatus.NO_CONTENT) :
+                new ResponseEntity<>(players, HttpStatus.OK);
     }
 }

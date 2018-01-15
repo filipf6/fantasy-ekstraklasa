@@ -33,7 +33,7 @@ public class Serializer {
             jsonGenerator.writeObjectField("createDate", user.getCreateDate());
             jsonGenerator.writeBooleanField("enabled", user.isEnabled());
             jsonGenerator.writeObjectField("lastPasswordResetDate", user.getLastPasswordResetDate());
-            jsonGenerator.writeNumberField("budget",user.getBudget());
+//            jsonGenerator.writeNumberField("budget",user.getBudget());
         }
     }
     public static class LeagueSerializer extends JsonObjectSerializer<League> {
@@ -49,7 +49,7 @@ public class Serializer {
         protected void serializeObject(Team team, JsonGenerator jsonGenerator, SerializerProvider serializerProvider) throws IOException {
             jsonGenerator.writeNumberField("id",team.getId());
             jsonGenerator.writeStringField("name", team.getName());
-            jsonGenerator.writeObjectField("user", team.getUser());
+            jsonGenerator.writeObjectField("budget", team.getBudget());
         }
     }
 

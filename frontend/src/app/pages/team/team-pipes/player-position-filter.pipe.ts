@@ -7,6 +7,7 @@ export class PlayerPositionFilterPipe implements PipeTransform {
     // allPlayers.forEach(p=>{
     //   console.log(p.player.name+'->'+p.firstSquad+'=?'+firstSquad);
     // });
-    return allPlayers.filter(player=>player.firstSquad===firstSquad && player.player.position===position);
+    if(firstSquad==null) return allPlayers.filter(player=>player.player.position===position);
+    return allPlayers.filter(player=> player.firstSquad===firstSquad && player.player.position===position);
   }
 }

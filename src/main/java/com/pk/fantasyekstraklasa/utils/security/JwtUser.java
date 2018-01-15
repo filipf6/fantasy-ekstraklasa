@@ -18,7 +18,7 @@ public class JwtUser implements UserDetails {
     private final Collection<? extends GrantedAuthority> authorities;
     private final boolean enabled;
     private final Date lastPasswordResetDate;
-    private final Integer budget;
+//    private final Integer budget;
     private final Team team;
 
     public JwtUser(Long id,
@@ -30,7 +30,7 @@ public class JwtUser implements UserDetails {
                    Collection<? extends GrantedAuthority> authorities,
                    boolean enabled,
                    Date lastPasswordResetDate,
-                   Integer budget,
+//                   Integer budget,
                    Team team) {
         this.id = id;
         this.name = name;
@@ -41,7 +41,7 @@ public class JwtUser implements UserDetails {
         this.authorities = authorities;
         this.enabled = enabled;
         this.lastPasswordResetDate = lastPasswordResetDate;
-        this.budget = budget;
+//        this.budget = budget;
         this.team = team;
     }
 
@@ -103,9 +103,9 @@ public class JwtUser implements UserDetails {
         return lastPasswordResetDate;
     }
 
-    public Integer getBudget() {
-        return budget;
-    }
+//    public Integer getBudget() {
+//        return budget;
+//    }
 
     public Team getTeam() {
         return team;
