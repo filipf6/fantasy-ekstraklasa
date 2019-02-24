@@ -17,6 +17,7 @@ public class PlayersService {
     }
 
     public Player addPlayer(Player player) {
+        System.out.println(player.getPrice());
         return playersRepository.save(player);
     }
 

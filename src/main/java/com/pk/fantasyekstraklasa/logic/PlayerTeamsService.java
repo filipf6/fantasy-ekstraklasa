@@ -40,7 +40,15 @@ public class PlayerTeamsService {
     }
 
     public void substitutePlayers(Long playerInId, Long playerOutId) {
-
+        PlayerTeam playerIn = playerTeamRepository.findOne(playerInId);
+        PlayerTeam playerOut = playerTeamRepository.findOne(playerOutId);
+        if (playerIn == null || playerOut == null) throw new NotFoundException();
+        playerIn.setFirstSquad(true);
+        playerIn.setAccuratePosition(playerOut.getAccuratePosition());
+        playerOut.setFirstSquad(false);
+        playerOut.setAccuratePosition(null);
+        playerTeamRepository.saveAndFlush(playerOut);
+        playerTeamRepository.saveAndFlush(playerIn);
     }
 
     public Set<PlayerTeam> removePlayerFromTeam(Long playerTeamId) {

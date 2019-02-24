@@ -27,7 +27,6 @@ public class UsersService {
 
     public void saveUser(User user) {
         user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
-//        user.setBudget(100);
         usersRepository.save(user);
     }
 
@@ -44,10 +43,11 @@ public class UsersService {
     }
 
     public void setUsersTeam(Long userId, Team team) {
-        teamsRepository.save(team);
         User user = usersRepository.findOne(userId);
         if (user == null) throw new NotFoundException();
         team.setBudget(100);
+        System.out.println("budzet: "+team.getBudget());
+        teamsRepository.save(team);
         user.setTeam(team);
         usersRepository.saveAndFlush(user);
     }

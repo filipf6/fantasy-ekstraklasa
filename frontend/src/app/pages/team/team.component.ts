@@ -139,6 +139,7 @@ export class TeamComponent {
   getPlayers(teamId: number) {
     for (let i = 0; i < 4; i++) {
       this.addIconsHidden[i] = true;
+      this.substitutionIconsHidden[i] = true;
     }
     // this.addIconsHidden.forEach(hidden => console.log(hidden));
     this.teamService.getPlayers(teamId).subscribe(data => {
@@ -161,8 +162,13 @@ export class TeamComponent {
       .open(TeamCreationModalComponent, {size: 'sm', container: 'nb-layout'})
       .result
       .then(teamName => this.teamService
-        .setTeam(new Team(teamName))
-        .subscribe(savedTeam => this.team = savedTeam))
+        .setTeam(new Team(teamName, 100))
+        .subscribe(savedTeam => {
+          this.team = savedTeam;
+          for (let i = 0; i < 11; i++) {
+            this.firstSquadPlayers[i] = this.teamPlayers.find(player => player.firstSquad && player.accuratePosition === accuratePositions[i]);
+          }
+        }))
       .catch();
   }
 
@@ -210,6 +216,7 @@ export class TeamComponent {
   }
 
   sellPlayer(teamPlayer: TeamPlayer) {
+    console.log('player: '+teamPlayer);
     for (let i = 0; i < 4; i++) {
       this.addIconsHidden[i] = true;
     }

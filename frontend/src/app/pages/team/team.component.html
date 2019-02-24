@@ -26,48 +26,42 @@
                 <div class="inner">
                   <b>Bramkarze:</b>
                   <div *ngFor="let teamPlayer of teamPlayers | positionFilter:'GOALKEEPER':false"
-                       [class.pointer]="!addIconsHidden[0]"
-                       (click)="!addIconsHidden[0] && addPlayerToFirstSquad(teamPlayer.id, tempAccuratePosition)">
-                    <!--(click)="!substitutionIconsHidden[0] && substitutePlayers(teamPlayer.id)">-->
+                       [class.pointer]="!addIconsHidden[0] || !substitutionIconsHidden[0]"
+                        (click)="!substitutionIconsHidden[0] ? substitutePlayers(teamPlayer.id) : !addIconsHidden[0] && addPlayerToFirstSquad(teamPlayer.id, tempAccuratePosition)">
                     <div>
                       <i [hidden]="addIconsHidden[0]" class="fa fa-plus" aria-hidden="true"></i>
+                      <i [hidden]="substitutionIconsHidden[0]" class="fa fa-refresh" aria-hidden="true"></i>
                       <div style="display: inline;">{{teamPlayer.player.name}} {{teamPlayer.player.surname}}</div>
                     </div>
-                    <!--<div>-->
-                    <!--<i [hidden]="substitutionIconsHidden[0]" class="fa fa-refresh" aria-hidden="true"></i>-->
-                    <!--<div style="display: inline;">{{teamPlayer.player.name}} {{teamPlayer.player.surname}}</div>-->
-                    <!--</div>-->
-
-
                   </div>
                 </div>
                 <div class="inner">
                   <b>Obrońcy:</b>
                   <div *ngFor="let teamPlayer of teamPlayers | positionFilter:'DEFENDER':false"
-                       [class.pointer]="!addIconsHidden[1]"
-                       (click)="addPlayerToFirstSquad(teamPlayer.id, tempAccuratePosition)">
+                       [class.pointer]="!addIconsHidden[1] || !substitutionIconsHidden[1]"
+                       (click)="!substitutionIconsHidden[1] ? substitutePlayers(teamPlayer.id) : !addIconsHidden[1] && addPlayerToFirstSquad(teamPlayer.id, tempAccuratePosition)">
                     <i [hidden]="addIconsHidden[1]" class="fa fa-plus icons" aria-hidden="true"></i>
-                    <!--<i [hidden]="substitutionIconsHidden[1]" class="fa fa-refresh" aria-hidden="true"></i>-->
+                    <i [hidden]="substitutionIconsHidden[1]" class="fa fa-refresh" aria-hidden="true"></i>
                     <p style="display: inline;">{{teamPlayer.player.name}} {{teamPlayer.player.surname}}</p>
                   </div>
                 </div>
                 <div class="inner">
                   <b>Pomocnicy:</b>
                   <div *ngFor="let teamPlayer of teamPlayers | positionFilter:'MIDFIELDER':false"
-                       [class.pointer]="!addIconsHidden[2]"
-                       (click)="addPlayerToFirstSquad(teamPlayer.id, tempAccuratePosition)">
+                       [class.pointer]="!addIconsHidden[2] || !substitutionIconsHidden[2]"
+                       (click)="!substitutionIconsHidden[2] ? substitutePlayers(teamPlayer.id) : !addIconsHidden[2] && addPlayerToFirstSquad(teamPlayer.id, tempAccuratePosition)">
                     <i [hidden]="addIconsHidden[2]" class="fa fa-plus icons" aria-hidden="true"></i>
-                    <!--<i [hidden]="substitutionIconsHidden[2]" class="fa fa-refresh" aria-hidden="true"></i>-->
+                    <i [hidden]="substitutionIconsHidden[2]" class="fa fa-refresh" aria-hidden="true"></i>
                     <div style="display: inline;"> {{teamPlayer.player.name}} {{teamPlayer.player.surname}}</div>
                   </div>
                 </div>
                 <div class="inner">
                   <b>Napastnicy:</b>
                   <div *ngFor="let teamPlayer of teamPlayers | positionFilter:'FORWARD':false"
-                       [class.pointer]="!addIconsHidden[3]"
-                       (click)="addPlayerToFirstSquad(teamPlayer.id, tempAccuratePosition)">
+                       [class.pointer]="!addIconsHidden[3] || !substitutionIconsHidden[3]"
+                       (click)="!substitutionIconsHidden[3] ? substitutePlayers(teamPlayer.id) : !addIconsHidden[3] && addPlayerToFirstSquad(teamPlayer.id, tempAccuratePosition)">
                     <i [hidden]="addIconsHidden[3]" class="fa fa-plus icons" aria-hidden="true"></i>
-                    <!--<i [hidden]="substitutionIconsHidden[3]" class="fa fa-refresh" aria-hidden="true"></i>-->
+                    <i [hidden]="substitutionIconsHidden[3]" class="fa fa-refresh" aria-hidden="true"></i>
                     <p style="display: inline;">{{teamPlayer.player.name}} {{teamPlayer.player.surname}}</p>
                   </div>
                 </div>
@@ -76,7 +70,7 @@
           </div>
 
           <ng-template #setUpTeam>
-            <div class="container-fluid">
+            <div *ngIf="!team" class="container-fluid">
               <div class="row">
                 <div class="col-md-9" style="margin-top: 2%">
                   <p>Nie masz jeszcze drużyny. Kliknij przycisk aby skompletować zespół i dołączyć do rywalizacji z

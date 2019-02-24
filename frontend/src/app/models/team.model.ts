@@ -3,7 +3,8 @@ export class Team {
   name: string;
   budget: number;
 
-  constructor(name: string) {
+  constructor(name: string, budget: number) {
     this.name = name;
+    this.budget = budget;
   }
 }

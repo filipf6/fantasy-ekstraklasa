@@ -36,6 +36,7 @@ public class PlayerTeamsController {
 
     @RequestMapping(value = "/{playerInId}/{playerOutId}/substitutePlayers", method = RequestMethod.PATCH)
     public ResponseEntity<?> substitutePlayers(@PathVariable Long playerInId, @PathVariable Long playerOutId) {
+        playerTeamsService.substitutePlayers(playerInId, playerOutId);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 

@@ -32,6 +32,7 @@ export class TeamService {
   }
 
   substitutePlayers(playerInId, playerOutId): Observable<any> {
+    console.log('in:'+playerInId+', out: '+playerOutId);
     return this.restService.patch(`playerTeams/${playerInId}/${playerOutId}/substitutePlayers`, null);
   }
 

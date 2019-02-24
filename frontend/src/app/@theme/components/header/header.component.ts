@@ -17,10 +17,10 @@ export class HeaderComponent {
 
   userMenu = [
     {
-      title: 'Profile'
+      title: 'Profil'
     },
     {
-      title: 'Log out',
+      title: 'Wyloguj się',
       link: '../auth/login',
     }];
 

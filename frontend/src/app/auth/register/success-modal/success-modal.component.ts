@@ -12,7 +12,7 @@ import {NgbActiveModal} from "@ng-bootstrap/ng-bootstrap";
     </div>
     <div class="modal-body">
       <div class="links">
-          Your account has been created successfully. You can now <a routerLink="../login" (click)="closeModal()"><strong>Sign in</strong></a>
+          Twoje konto zostało założone pomyślnie. Możesz się teraz <a routerLink="../login" (click)="closeModal()"><strong>zalogować</strong></a>
       </div>
     </div>
     <div class="modal-footer">
@@ -21,7 +21,7 @@ import {NgbActiveModal} from "@ng-bootstrap/ng-bootstrap";
 })
 export class SuccessModalComponent {
 
-  modalHeader = `Register success!`;
+  modalHeader = `Rejestracja zakończona pomyślnie!`;
 
   constructor(private activeModal: NgbActiveModal) { }
 
